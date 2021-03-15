@@ -1,3 +1,4 @@
+from secret_settings import *
 """
 Django settings for jobber_project project.
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'eme#fyc+j7lz6qpt2ag+1d_od1pdt4e*ql$mv_ov8s+)+43+7b'
+SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
