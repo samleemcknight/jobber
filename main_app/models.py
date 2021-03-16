@@ -15,8 +15,6 @@ TIME_ZONE = (
 class Category(models.Model):
   name = models.CharField(max_length=30)
 
-  
-
   def __str__(self):
     return f"{self.name}"
 
