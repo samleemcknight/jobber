@@ -38,8 +38,6 @@ post_save.connect(create_profile, sender=User)
 class Category(models.Model):
   name = models.CharField(max_length=30)
 
-  
-
   def __str__(self):
     return f"{self.name}"
 

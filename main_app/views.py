@@ -28,10 +28,12 @@ def view_profile(request, user_id):
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
-  category = Category.objects.get(id=event_id)    #filter(id__in=event.category.all().values_list('id'))
+
+  categories = event.category.all()
+
   context = {
     'event': event,
-    'category': category
+    'categories': categories
   }
 
   return render(request, 'events/event.html', context)
