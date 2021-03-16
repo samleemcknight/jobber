@@ -21,6 +21,9 @@ def view_profile(request, user_id):
     user = User.objects.get(id=user_id)
   else:
     user = request.user
+  date = user.date_joined
+  user.date_joined = date.strftime("%B %d, %Y")
+  print('date: ', date)
   context = {
     'user': user
   }
@@ -35,7 +38,7 @@ def edit_profile(request, user_id):
 
     profile_form.save()
 
-    return redirect('profile', user_id=user_id)
+    return redirect('view_profile', user_id=user_id)
   else:
     return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
 
