@@ -31,16 +31,19 @@ def view_profile(request, user_id):
 
 def edit_profile(request, user_id):
   user = User.objects.get(id=user_id)
+  if user.id == request.user.id:
+    profile_form = EditProfileForm(request.POST or None, instance=user)
+    
+    if request.POST and profile_form.is_valid():
 
-  profile_form = EditProfileForm(request.POST or None, instance=user)
-  
-  if request.POST and profile_form.is_valid():
+      profile_form.save()
 
-    profile_form.save()
+      return redirect('view_profile', user_id=user_id)
+    else:
+      return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
 
-    return redirect('view_profile', user_id=user_id)
   else:
-    return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
+    return redirect('view_profile', user_id=request.user.id)
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
