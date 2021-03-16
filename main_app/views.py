@@ -18,12 +18,12 @@ def home(request):
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
-  category = Category.objects.filter(event=event)
-  # event_category = event.category
-  print('category: ', category)
+
+  categories = event.category.all()
+
   context = {
     'event': event,
-    'category': category
+    'categories': categories
   }
 
   return render(request, 'events/event.html', context)
