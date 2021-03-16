@@ -18,7 +18,9 @@ def home(request):
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
-  category = Category.objects.get(id=event_id)    #filter(id__in=event.category.all().values_list('id'))
+  category = Category.objects.filter(event=event)
+  # event_category = event.category
+  print('category: ', category)
   context = {
     'event': event,
     'category': category
