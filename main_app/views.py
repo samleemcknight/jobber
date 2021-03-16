@@ -4,7 +4,7 @@ from django.contrib.auth import login
 
 from .forms import SignupForm, EventForm
 
-from .models import Event
+from .models import Event, Category
 
 # Create your views here.
 
@@ -18,11 +18,10 @@ def home(request):
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
-  print('------------------')
-  print(event.id)
-  print('------------------')
+  category = Category.objects.get(id=event_id)    #filter(id__in=event.category.all().values_list('id'))
   context = {
-    'event': event
+    'event': event,
+    'category': category
   }
 
   return render(request, 'events/event.html', context)
