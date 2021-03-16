@@ -10,8 +10,8 @@
         {% for event in events %}
         <h3>{{ event.name }}</h3>
         {{ event.description }}
+        <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
         {% endfor %}
-        <a href=""><p>Detail</p></a>
       </div>
     </div>
   </div>
