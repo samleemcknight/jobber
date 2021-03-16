@@ -1,0 +1,18 @@
+
+/* custom classes */
+.modal-input {
+  margin: 0;
+}
+
+/* override materialize classes: */
+nav h4 {
+  color: black;
+}
+
+.modal {
+  height: 75% !important;
+}
+
+.modal .modal-content {
+  padding: 10px;
+}
