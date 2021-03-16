@@ -16,6 +16,11 @@ def home(request):
   }
   return render(request, 'index.html', context)
 
+def profile(request):
+  
+  return render(request, 'registration/profile.html')
+
+
 def view_profile(request, user_id):
   if user_id:
     user = User.objects.get(id=user_id)
@@ -35,7 +40,7 @@ def edit_profile(request, user_id):
 
     profile_form.save()
 
-    return redirect('profile', user_id=user_id)
+    return redirect('view_profile', user_id=user_id)
   else:
     return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
 
