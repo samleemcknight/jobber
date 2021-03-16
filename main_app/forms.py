@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
 from .models import Event
@@ -17,3 +17,8 @@ class EventForm(forms.ModelForm):
   class Meta:
     model = Event
     fields = ('name', 'date', 'time_zone', 'description', 'speaker', 'location_link')
+
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username',)

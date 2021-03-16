@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import login
 
-from .forms import SignupForm, EventForm
+from .forms import SignupForm, EventForm, EditProfileForm
 
-from .models import Event, Category
+from .models import Event, Category, User
 
 # Create your views here.
 
@@ -15,6 +15,29 @@ def home(request):
     'events': events
   }
   return render(request, 'index.html', context)
+
+def view_profile(request, user_id):
+  if user_id:
+    user = User.objects.get(id=user_id)
+  else:
+    user = request.user
+  context = {
+    'user': user
+  }
+  return render(request, 'registration/profile.html', context)
+
+def edit_profile(request, user_id):
+  user = User.objects.get(id=user_id)
+
+  profile_form = EditProfileForm(request.POST or None, instance=user)
+  
+  if request.POST and profile_form.is_valid():
+
+    profile_form.save()
+
+    return redirect('profile', user_id=user_id)
+  else:
+    return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
