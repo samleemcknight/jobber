@@ -4,11 +4,28 @@ from django.contrib.auth import login
 
 from .forms import SignupForm, EventForm
 
+from .models import Event
+
 # Create your views here.
 
 # home view:
 def home(request):
-  return render(request, 'index.html')
+  events = Event.objects.all()
+  context = {
+    'events': events
+  }
+  return render(request, 'index.html', context)
+
+def event_detail(request, event_id):
+  event = Event.objects.get(id=event_id)
+  print('------------------')
+  print(event.id)
+  print('------------------')
+  context = {
+    'event': event
+  }
+
+  return render(request, 'events/event.html', context)
 
 def signup(request):
   error_message = ''
