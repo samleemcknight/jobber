@@ -7,6 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} ">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const elem = document.querySelector('.modal');
+        M.Modal.init(elem);
+      });
+  </script>
   <title>Jobber</title>
 </head>
 <body>
@@ -20,14 +27,54 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
-          <li><a href="{% url 'signup' %}">Sign up</a></li>
-          <li><a href="{% url 'login' %}">Log In</a></li>
+          {% comment %} <li><a href="{% url 'signup' %}">Sign up</a></li> {% endcomment %}
+          <li><a class="waves-effect waves-light btn red darken-3 modal-trigger" href="#modal1">Login</a></li>
+          <li><a class="waves-effect waves-light btn red darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
+          {% comment %} <li><a href="{% url 'login' %}">Log In</a></li> {% endcomment %}
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <form method="POST" action="{% url 'login' %}">
+                <h4>Log In</h4>
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="modal-input">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="modal-input">
+                <input type="submit" class="btn green darken-3" value="login" class="modal-input">
+                <input type="hidden" name="next" value="{{ next }}">
+              </form>
+            </div>
+            <div class="modal-content">
+              <form method="POST" action="{% url 'signup' %}">
+                <h4>Sign Up</h4>
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col s-6">
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" class="modal-input"> 
+                  </div>
+                  <div class="col s-6">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" class="modal-input"> 
+                  </div>
+                </div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="modal-input">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="modal-input">
+                <input type="submit" class="btn green darken-3" value="login" class="modal-input">
+                <input type="hidden" name="next" value="{{ next }}">
+              </form>
+            </div>
+        </div>
         {% endif %}
         </ul>
       </div>
     </nav>
   </header>
-  {% block content %}
-  {% endblock  %}
+    <main class="container">
+      {% block content %}
+      {% endblock  %}
+    </main>
 </body>
 </html>
