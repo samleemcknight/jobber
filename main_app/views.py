@@ -16,6 +16,16 @@ def home(request):
   }
   return render(request, 'index.html', context)
 
+def view_profile(request, user_id):
+  if user_id:
+    user = User.objects.get(id=user_id)
+  else:
+    user = request.user
+  context = {
+    'user', user
+  }
+  return render(request, 'registration/profile.html', context)
+
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
   category = Category.objects.get(id=event_id)    #filter(id__in=event.category.all().values_list('id'))
