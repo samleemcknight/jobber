@@ -8,5 +8,9 @@ urlpatterns = [
   path('profile/<int:user_id>/', views.view_profile, name="view_profile"),
   path('profile/<int:user_id>/edit/', views.edit_profile, name="edit_profile"),
   path('event/<int:event_id>/', views.event_detail, name="event_detail"),
+<<<<<<< HEAD
   path('search/', views.search_bar, name="search"),
+=======
+  path('event/<int:event_id>/register/', views.event_register, name="event_register"),
+>>>>>>> submain
 ]
