@@ -11,7 +11,9 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const elem = document.querySelector('.modal');
+        const elem1 = document.querySelector('#modal2');
         M.Modal.init(elem);
+        M.Modal.init(elem1);
       });
   </script>
   <title>Jobber</title>
@@ -30,6 +32,7 @@
         {% else %}
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
+          <!-- modal for login/signup -->
           <div id="modal1" class="modal">
             <div class="modal-content">
               <form method="POST" action="{% url 'login' %}">
@@ -72,6 +75,18 @@
         </div>
         {% endif %}
         </ul>
+        <!-- modal for unregistering -->
+        {% if event.id %}
+          <div id="modal2" class="modal">
+            <div class="modal-content center">
+              <form method="POST" action="{% url 'event_register' event.id %}">
+              {% csrf_token %}
+              <p class="registration-text">Are you sure you want to cancel your registration?</p>
+              <input hidden type="text" name="action" value="unregister">
+              <input type="submit" class="btn red darken-1 bottom" value="Unregister">
+            </div>
+          </div>
+        {% endif %}
       </div>
     </nav>
   </header>

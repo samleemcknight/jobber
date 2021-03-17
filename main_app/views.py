@@ -68,10 +68,21 @@ def event_detail(request, event_id):
   context = {
     'event': event,
     'categories': categories,
-    'atendee': atendee
+    'atendee': atendee,
   }
 
   return render(request, 'events/event.html', context)
+
+def event_register(request, event_id):
+  pass
+  event = Event.objects.get(id=event_id)
+  success_message = ''
+  if request.POST['action'] == 'register':
+    event.user.add(request.user)
+  # using a GET method in a form to make the code DRY-er
+  else: 
+    event.user.remove(request.user)
+  return redirect('event_detail', event_id)
 
 def search_bar(request):
   if request.method == 'GET':
@@ -81,15 +92,6 @@ def search_bar(request):
       'events': events
     }
     return render(request, 'events/searchResult.html', context)
-
-def event_register(request, event_id):
-  event = Event.objects.get(id=event_id)
-  if request.method == 'POST':
-    event.user.add(request.user)
-  # using a GET method in a form to make the code DRY-er
-  else: 
-    event.user.remove(request.user)
-  return redirect('event_detail', event_id)
 
 def signup(request):
   error_message = ''
