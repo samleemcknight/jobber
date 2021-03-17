@@ -54,6 +54,7 @@ def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
   categories = event.category.all()
   atendee = event.user.filter(id=request.user.id)
+  guests = event.user.all()
   if len(atendee) == 1:
     atendee = atendee[0]
   # the following conditional ensures that a string is passed to the html in order to
@@ -68,7 +69,8 @@ def event_detail(request, event_id):
   context = {
     'event': event,
     'categories': categories,
-    'atendee': atendee
+    'atendee': atendee,
+    'guests': guests,
   }
 
   return render(request, 'events/event.html', context)
@@ -76,11 +78,11 @@ def event_detail(request, event_id):
 def search_bar(request):
   if request.method == 'GET':
     search = request.GET.get('search')
-    events = Event.objects.all().filter(name=search)
+    events = Event.objects.all().filter(name__icontains=search)
     context = {
       'events': events
     }
-    return render(request, 'events/searchResult.html', context)
+    return render(request, 'events/search_result.html', context)
 
 def event_register(request, event_id):
   event = Event.objects.get(id=event_id)
