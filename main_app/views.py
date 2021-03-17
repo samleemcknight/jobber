@@ -16,6 +16,11 @@ def home(request):
   }
   return render(request, 'index.html', context)
 
+def profile(request):
+  
+  return render(request, 'registration/profile.html')
+
+
 def view_profile(request, user_id):
   if user_id:
     user = User.objects.get(id=user_id)
