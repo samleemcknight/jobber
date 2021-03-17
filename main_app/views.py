@@ -85,11 +85,28 @@ def event_register(request, event_id):
   return redirect('event_detail', event_id)
 
 def search_bar(request):
+  categories = Category.objects.all()
+  context = { 'categories': categories }
   if request.method == 'GET':
     search = request.GET.get('search')
+    search_term = f"{search}"
     events = Event.objects.all().filter(name=search)
     context = {
-      'events': events
+      'events': events,
+      'categories': categories,
+      'search_term': search_term
+    }
+    return render(request, 'events/searchResult.html', context)
+
+def filter(request):
+  events = Event.objects.filter(category__name=request.POST['category'])
+  categories = Category.objects.all()
+  search_term = f"{request.POST['category']}"
+  if request.method == 'POST':
+    context = {
+      'events': events,
+      'categories': categories,
+      'search_term': search_term
     }
     return render(request, 'events/searchResult.html', context)
 
