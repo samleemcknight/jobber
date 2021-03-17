@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+  {% if success_message %}
+  <p>{{ success_message }}</p>
+  {% endif %}
   <h2>{{ event.name }}</h2>
   <hr>
     
@@ -10,13 +13,12 @@
   <p><span class="keyword">Speaker(s):</span> {{event.speaker}}</p>
   {% if atendee.id == request.user.id %}
     <p><span class="keyword">Location:</span> <a href="{{event.location_link}}">{{event.location_link}}</a></p>
-    <form action="{% url 'event_register' event.id %}" method="GET">
-      {% csrf_token %}
-      <input type="submit" class="btn red darken-1" value="Unregister">
-    </form>
+    
+    <a class="waves-effect waves-light btn red darken-1 modal-trigger" href="#modal2">Unregister</a>
   {% else%}
     <form action="{% url 'event_register' event.id %}" method="POST">
       {% csrf_token %}
+      <input hidden type="text" name="action" value="register">
       <input type="submit" class="btn blue darken-3" value="Register">
     </form>
   {% endif %}

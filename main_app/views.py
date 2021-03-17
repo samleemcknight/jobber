@@ -70,28 +70,54 @@ def event_detail(request, event_id):
     'event': event,
     'categories': categories,
     'atendee': atendee,
+<<<<<<< HEAD
     'guests': guests,
+=======
+>>>>>>> submain
   }
 
   return render(request, 'events/event.html', context)
 
-def search_bar(request):
-  if request.method == 'GET':
-    search = request.GET.get('search')
-    events = Event.objects.all().filter(name__icontains=search)
-    context = {
-      'events': events
-    }
-    return render(request, 'events/search_result.html', context)
-
 def event_register(request, event_id):
+  pass
   event = Event.objects.get(id=event_id)
-  if request.method == 'POST':
+  success_message = ''
+  if request.POST['action'] == 'register':
     event.user.add(request.user)
   # using a GET method in a form to make the code DRY-er
   else: 
     event.user.remove(request.user)
   return redirect('event_detail', event_id)
+
+def search_bar(request):
+  categories = Category.objects.all()
+  context = { 'categories': categories }
+  if request.method == 'GET':
+    search = request.GET.get('search')
+<<<<<<< HEAD
+    events = Event.objects.all().filter(name__icontains=search)
+=======
+    search_term = f"{search}"
+    events = Event.objects.all().filter(name=search)
+>>>>>>> submain
+    context = {
+      'events': events,
+      'categories': categories,
+      'search_term': search_term
+    }
+    return render(request, 'events/search_result.html', context)
+
+def filter(request):
+  events = Event.objects.filter(category__name=request.POST['category'])
+  categories = Category.objects.all()
+  search_term = f"{request.POST['category']}"
+  if request.method == 'POST':
+    context = {
+      'events': events,
+      'categories': categories,
+      'search_term': search_term
+    }
+    return render(request, 'events/searchResult.html', context)
 
 def signup(request):
   error_message = ''
