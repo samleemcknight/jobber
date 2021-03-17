@@ -2,12 +2,19 @@
 {% block content %}
   <h2>{{ event.name }}</h2>
   <hr>
-  <p>Event Type:</p>
-{% for category in categories %}
-  <li>{{ category.name }}</li>
-{% endfor %}
-  <p>Date: {{ event.date }} {{ event.time_zone }}</p>
-  <p>Description: {{ event.description }}</p>
-  <p>Speaker(s): {{event.speaker}}</p>
-  <p>Location: {{event.location_link}}</p>
+  
+  <p><span class="keyword">Industry Focus:</span> {{ categories }}</p>
+  <p><span class="keyword">Date:</span> {{ event.date }} {{ event.time_zone }}</p>
+  <p class="keyword">Description:</p>
+  <p>{{ event.description }}</p>
+  <p><span class="keyword">Speaker(s):</span> {{event.speaker}}</p>
+  {% if atendee.id == request.user.id %}
+    <p><span class="keyword">Location:</span> <a href="{{event.location_link}}">{{event.location_link}}</a></p>
+  {% endif%}
+  {% if atendee.id != request.user.id %}
+    <form action="{% url 'event_register' event.id %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" class="btn blue darken-3" value="Register">
+    </form>
+  {% endif %}
 {% endblock %}

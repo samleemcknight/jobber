@@ -7,6 +7,11 @@
   margin: 0;
 }
 
+.keyword {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 /* override materialize classes: */
 nav {
   background-color: rgba(0, 18, 18, 0.7);
