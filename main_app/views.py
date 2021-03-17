@@ -11,8 +11,10 @@ from .models import Event, Category, User
 # home view:
 def home(request):
   events = Event.objects.all().order_by('date')
+  categories = Category.objects.all()
   context = {
-    'events': events
+    'events': events,
+    'categories': categories
   }
   return render(request, 'index.html', context)
 
@@ -70,10 +72,7 @@ def event_detail(request, event_id):
     'event': event,
     'categories': categories,
     'atendee': atendee,
-<<<<<<< HEAD
     'guests': guests,
-=======
->>>>>>> submain
   }
 
   return render(request, 'events/event.html', context)
@@ -94,12 +93,8 @@ def search_bar(request):
   context = { 'categories': categories }
   if request.method == 'GET':
     search = request.GET.get('search')
-<<<<<<< HEAD
-    events = Event.objects.all().filter(name__icontains=search)
-=======
     search_term = f"{search}"
     events = Event.objects.all().filter(name=search)
->>>>>>> submain
     context = {
       'events': events,
       'categories': categories,
@@ -117,7 +112,7 @@ def filter(request):
       'categories': categories,
       'search_term': search_term
     }
-    return render(request, 'events/searchResult.html', context)
+    return render(request, 'events/search_result.html', context)
 
 def signup(request):
   error_message = ''
