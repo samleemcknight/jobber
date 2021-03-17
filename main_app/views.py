@@ -10,7 +10,7 @@ from .models import Event, Category, User
 
 # home view:
 def home(request):
-  events = Event.objects.all()
+  events = Event.objects.all().order_by('date')
   context = {
     'events': events
   }
@@ -61,6 +61,15 @@ def event_detail(request, event_id):
   }
 
   return render(request, 'events/event.html', context)
+
+def search_bar(request):
+  if request.method == 'GET':
+    search = request.GET.get('search')
+    events = Event.objects.all().filter(name=search)
+    context = {
+      'events': events
+    }
+    return render(request, 'events/searchResult.html', context)
 
 def signup(request):
   error_message = ''
