@@ -7,9 +7,26 @@
   margin: 0;
 }
 
+.italics {
+  font-style: italic;
+}
+
 .keyword {
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.registration-text {
+  color: black;
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+.select-label {
+  color: black;
+  position: relative;
+  font-size: 1rem;
+  top: 4px;
 }
 
 /* override materialize classes: */
@@ -27,4 +44,19 @@ nav h4 {
 
 .modal .modal-content {
   padding: 10px;
+}
+
+#modal2 {
+  top: 30% !important;
+  width: 40% !important;
+  height: 12rem !important;
+  opacity: 0.9 !important;
+}
+
+
+/* custom id's */
+#category {
+  display: block;
+  border: 1.2px solid black;
+  margin-top: 10px;
 }

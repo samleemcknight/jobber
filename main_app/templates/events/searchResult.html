@@ -1,8 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-
-{%  if events %}
-    <h1>Search Result Found</h1>
+<div class="form-control">
+<form action="{% url 'search' %}" method="GET">
+  <input type="text" name="search" placeholder="Search Event"> 
+  <button class="btn blue darken-3" type="submit">Search</button>
+</form>
+<form action="{% url 'filter'%}" method="POST">
+{% csrf_token %}
+  <label for="category" class="select-label">Filter by Industry or Topic:</label>
+      <select name="category" id="category">
+        {% for category in categories %}
+          <option value="{{category.name}}">{{category.name}}</option>
+        {% endfor %}
+        <input type="submit" class="btn blue darken-3" value="Filter">
+      </select>
+</form>
+{% if events %}
+    <h3>Result Found for {{ search_term }}</h3>
     <br>
 
 <div class="row">
@@ -19,7 +33,7 @@
   </div>
 </div>
     {% else %}
-        <h1>No results found</h1>
+      <h3>No results found</h3>
 
 {% endif %}
 
