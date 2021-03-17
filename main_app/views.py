@@ -86,7 +86,10 @@ def event_register(request, event_id):
   event = Event.objects.get(id=event_id)
   if request.method == 'POST':
     event.user.add(request.user)
-  pass
+  # using a GET method in a form to make the code DRY-er
+  else: 
+    event.user.remove(request.user)
+  return redirect('event_detail', event_id)
 
 def signup(request):
   error_message = ''

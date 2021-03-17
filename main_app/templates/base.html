@@ -26,6 +26,7 @@
         <ul class="right">
         {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li><a href="{% url 'profile' %}">Profile</a></li>
         {% else %}
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>

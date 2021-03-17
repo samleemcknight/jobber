@@ -10,8 +10,11 @@
   <p><span class="keyword">Speaker(s):</span> {{event.speaker}}</p>
   {% if atendee.id == request.user.id %}
     <p><span class="keyword">Location:</span> <a href="{{event.location_link}}">{{event.location_link}}</a></p>
-  {% endif%}
-  {% if atendee.id != request.user.id %}
+    <form action="{% url 'event_register' event.id %}" method="GET">
+      {% csrf_token %}
+      <input type="submit" class="btn red darken-1" value="Unregister">
+    </form>
+  {% else%}
     <form action="{% url 'event_register' event.id %}" method="POST">
       {% csrf_token %}
       <input type="submit" class="btn blue darken-3" value="Register">
