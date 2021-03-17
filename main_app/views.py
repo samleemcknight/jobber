@@ -52,15 +52,32 @@ def edit_profile(request, user_id):
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
-
   categories = event.category.all()
-
+  atendee = event.user.filter(id=request.user.id)
+  if len(atendee) == 1:
+    atendee = atendee[0]
+  # the following conditional ensures that a string is passed to the html in order to
+  # format it nicely
+  if len(categories) > 1:
+    categories_list = []
+    for el in categories:
+      categories_list.append(el.name)
+    categories = ' | '.join(categories_list)
+  else:
+    categories = categories[0]
   context = {
     'event': event,
-    'categories': categories
+    'categories': categories,
+    'atendee': atendee
   }
 
   return render(request, 'events/event.html', context)
+
+def event_register(request, event_id):
+  event = Event.objects.get(id=event_id)
+  if request.method == 'POST':
+    event.user.add(request.user)
+  pass
 
 def signup(request):
   error_message = ''

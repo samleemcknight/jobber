@@ -27,10 +27,8 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
-          {% comment %} <li><a href="{% url 'signup' %}">Sign up</a></li> {% endcomment %}
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
-          {% comment %} <li><a href="{% url 'login' %}">Log In</a></li> {% endcomment %}
           <div id="modal1" class="modal">
             <div class="modal-content">
               <form method="POST" action="{% url 'login' %}">
