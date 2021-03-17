@@ -79,6 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'jobber',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres'
     }
 }
 
@@ -121,10 +123,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
 LOGIN_REDIRECT_URL = '/profile/'
 LOGOUT_REDIRECT_URL = '/'
-=======
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
->>>>>>> submain
