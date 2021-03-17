@@ -28,8 +28,8 @@
           <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
           {% comment %} <li><a href="{% url 'signup' %}">Sign up</a></li> {% endcomment %}
-          <li><a class="waves-effect waves-light btn red darken-3 modal-trigger" href="#modal1">Login</a></li>
-          <li><a class="waves-effect waves-light btn red darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
+          <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
+          <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
           {% comment %} <li><a href="{% url 'login' %}">Log In</a></li> {% endcomment %}
           <div id="modal1" class="modal">
             <div class="modal-content">
@@ -40,7 +40,7 @@
                 <input type="text" name="username" class="modal-input">
                 <label for="password">Password:</label>
                 <input type="password" name="password" class="modal-input">
-                <input type="submit" class="btn green darken-3" value="login" class="modal-input">
+                <input type="submit" class="btn blue darken-3" value="login" class="modal-input">
                 <input type="hidden" name="next" value="{{ next }}">
               </form>
             </div>
@@ -66,7 +66,7 @@
                 <input type="password" name="password1" class="modal-input">
                 <label for="password2">Confirm password:</label>
                 <input type="password" name="password2" class="modal-input">
-                <input type="submit" class="btn green darken-3" value="sign up" class="modal-input">
+                <input type="submit" class="btn blue darken-3" value="sign up" class="modal-input">
                 <input type="hidden" name="next" value="{{ next }}">
               </form>
             </div>

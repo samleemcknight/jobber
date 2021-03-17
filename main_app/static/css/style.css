@@ -1,10 +1,17 @@
 
+.title h1 {
+  font-size: 3rem;
+}
 /* custom classes */
 .modal-input {
   margin: 0;
 }
 
 /* override materialize classes: */
+nav {
+  background-color: rgba(0, 18, 18, 0.7);
+}
+
 nav h4 {
   color: black;
 }

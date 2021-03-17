@@ -6,8 +6,8 @@
 {% for category in categories %}
   <li>{{ category.name }}</li>
 {% endfor %}
-  <p>{{ event.date }} {{ event.time_zone }}</p>
-  <p>{{ event.description }}</p>
-  <p>{{event.speaker}}</p>
-  <p>{{event.location_link}}</p>
+  <p>Date: {{ event.date }} {{ event.time_zone }}</p>
+  <p>Description: {{ event.description }}</p>
+  <p>Speaker(s): {{event.speaker}}</p>
+  <p>Location: {{event.location_link}}</p>
 {% endblock %}
