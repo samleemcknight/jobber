@@ -4,18 +4,14 @@
 
 {% if user.is_authenticated %}
 
-  <h2>{% block title %} Profile {% endblock %}</h2>
+  <h2>{% block title %} {{ user.first_name }} {{user.last_name }} {% endblock %}</h2>
   <p>Username: {{ user }}</p>
-  <p>Date: {{ user.date_joined }}</p>
-  <p>Last Active: {{ user.last_login }}</p>
+  <p>Date Joined: {{ date_joined }}</p>
+  <p>Last Active: {{ last_login }}</p>
 
 {% if user.id == request.user.id  %}
-
-<form method="POST" action="{% url 'edit_profile' user.id %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-    <input type="submit" class="btn" value="Edit Profile">
-</form>
+<a class="btn" href="{% url 'edit_profile' %}">Edit Profile</a>
+<br>
 <br>
 <form action="{% url 'change-password' %}">
     <input type="submit" class="btn" value="Change Password" />
