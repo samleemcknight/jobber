@@ -19,7 +19,16 @@
 
 {% else %}
 
-<p>Login to view profile</p>
+<h3>Login to view h3rofile</h3>
 
 {% endif %}
+<div class="row">
+  {% for event in events %}
+  <div class="card col s-3">
+    <div class="card-content">
+      {{ event.name }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

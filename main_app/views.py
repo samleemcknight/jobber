@@ -24,6 +24,8 @@ def profile(request):
 
 
 def view_profile(request, user_id):
+  events = Event.objects.filter(user__id=user_id)
+  print(events)
   if user_id:
     user = User.objects.get(id=user_id)
   else:
@@ -32,7 +34,8 @@ def view_profile(request, user_id):
   user.date_joined = date.strftime("%B %d, %Y")
   print('date: ', date)
   context = {
-    'user': user
+    'user': user,
+    'events': events
   }
   return render(request, 'registration/profile.html', context)
 
@@ -83,7 +86,6 @@ def event_register(request, event_id):
   success_message = ''
   if request.POST['action'] == 'register':
     event.user.add(request.user)
-  # using a GET method in a form to make the code DRY-er
   else: 
     event.user.remove(request.user)
   return redirect('event_detail', event_id)
@@ -94,7 +96,7 @@ def search_bar(request):
   if request.method == 'GET':
     search = request.GET.get('search')
     search_term = f"{search}"
-    events = Event.objects.all().filter(name=search)
+    events = Event.objects.all().filter(name__icontains=search)
     context = {
       'events': events,
       'categories': categories,
