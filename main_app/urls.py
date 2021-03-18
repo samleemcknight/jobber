@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views 
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
   path('', views.home, name="home"),
@@ -11,4 +12,5 @@ urlpatterns = [
   path('search/', views.search_bar, name="search"),
   path('search/by_category/', views.filter, name="filter"),
   path('event/<int:event_id>/register/', views.event_register, name="event_register"),
+  path('change-password', auth_views.PasswordChangeView.as_view(template_name='registration/change-password.html', success_url='/'), name='change-password'),
 ]
