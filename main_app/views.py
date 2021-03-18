@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone, dateformat
 from django.contrib.auth import login
-
+from django.contrib.auth.decorators import login_required
 from .forms import SignupForm, EventForm, EditProfileForm
 
 from .models import Event, Category, User
@@ -18,6 +18,7 @@ def home(request):
   }
   return render(request, 'index.html', context)
 
+@login_required
 def profile(request):
   events = Event.objects.filter(user__id=request.user.id)
   date_joined = request.user.date_joined.strftime("%B %d, %Y")
@@ -29,6 +30,7 @@ def profile(request):
   }
   return render(request, 'registration/profile.html', context)
 
+@login_required
 def view_profile(request, user_id):
   # Edited the following conditional to get rid of any errors result from tring to get to 
   # a url with a user.id that doesn't exist.
@@ -48,6 +50,7 @@ def view_profile(request, user_id):
   }
   return render(request, 'registration/profile.html', context)
 
+@login_required
 def edit_profile(request):
   user = User.objects.get(id=request.user.id)
   profile_form = EditProfileForm(request.POST or None, instance=user)
@@ -82,6 +85,7 @@ def event_detail(request, event_id):
 
   return render(request, 'events/event.html', context)
 
+@login_required
 def event_register(request, event_id):
   pass
   event = Event.objects.get(id=event_id)
