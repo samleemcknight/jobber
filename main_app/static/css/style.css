@@ -28,11 +28,19 @@
   line-height: 2rem;
 }
 
+.search-bar input::placeholder {
+  padding-left: 5px;
+}
+
 .select-label {
   color: black;
   position: relative;
   font-size: 1rem;
   top: 4px;
+}
+
+.submit-search {
+  height: 3rem;
 }
 
 /* override materialize classes: */
@@ -59,10 +67,26 @@ nav h4 {
   opacity: 0.9 !important;
 }
 
+.row .col {
+  padding-right: 0;
+  padding-left: 1px;
+}
 
 /* custom id's */
-#category {
+#category-filter {
   display: block;
   border: 1.2px solid black;
+  margin-right: 0;
+}
+
+#svg-resume {
   margin-top: 10px;
+  height: 30vh;
+}
+
+#svg-career {
+  display: flex;
+  justify-content: center;
+  height: 30vh;
+  margin: 20px 0 20px 0;
 }

@@ -107,12 +107,12 @@ def search_bar(request):
 def filter(request):
   events = Event.objects.filter(category__name=request.POST['category'])
   categories = Category.objects.all()
-  search_term = f"{request.POST['category']}"
+  filter_term = f"{request.POST['category']}"
   if request.method == 'POST':
     context = {
       'events': events,
       'categories': categories,
-      'search_term': search_term
+      'filter_term': filter_term
     }
     return render(request, 'events/search_result.html', context)
 
