@@ -19,8 +19,11 @@ def home(request):
   return render(request, 'index.html', context)
 
 def profile(request):
-  
-  return render(request, 'registration/profile.html')
+  events = Event.objects.filter(user__id=request.user.id)
+  context = {
+    'events': events
+  }
+  return render(request, 'registration/profile.html', context)
 
 
 def view_profile(request, user_id):
@@ -41,7 +44,7 @@ def view_profile(request, user_id):
 def edit_profile(request, user_id):
   user = User.objects.get(id=user_id)
   if user.id == request.user.id:
-    profile_form = EditProfileForm(request.POST or None, instance=user)
+    profile_form = EditProfileForm(request.POST, instance=user)
     
     if request.POST and profile_form.is_valid():
 

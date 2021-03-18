@@ -24,8 +24,9 @@
   {% endif %}
 <div class="guestlist">
   <h4>Attendees</h4>
+  <p>Guests</p>
   {% for guest in guests %}
-    <p>Guest: {{ guest.first_name }} {{ guest.last_name }}</p>
+    <li>{{ guest.first_name }} {{ guest.last_name }}</li>
   {% endfor %}
 </div>
 {% endblock %}
