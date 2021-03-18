@@ -16,6 +16,12 @@
   font-weight: 500;
 }
 
+.profile-events {
+  height: 13rem;
+  margin: 5px;
+  overflow: hidden;
+}
+
 .registration-text {
   color: black;
   font-size: 1.6rem;
