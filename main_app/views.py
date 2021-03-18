@@ -11,8 +11,10 @@ from .models import Event, Category, User
 # home view:
 def home(request):
   events = Event.objects.all().order_by('date')
+  categories = Category.objects.all()
   context = {
-    'events': events
+    'events': events,
+    'categories': categories
   }
   return render(request, 'index.html', context)
 
