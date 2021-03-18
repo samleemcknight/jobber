@@ -27,12 +27,28 @@
 <h3>Login to view h3rofile</h3>
 
 {% endif %}
+<h4>Upcoming Events:</h4>
 <div class="row">
   {% for event in events %}
-  <div class="card col s-3">
-    <div class="card-content">
-      {{ event.name }}
-    </div>
+  <div class="card col m4 profile-events">
+      <div class="card-content">
+          Event: {{ event.name }}<br>
+          Date: {{ event.date }} {{ event.time_zone }}<br>
+          Description: {{ event.description }}
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h4>Past Events:</h4>
+<div class="row">
+  {% for event in events %}
+  <div class="card col m4 profile-events">
+      <div class="card-content">
+          Event: {{ event.name }}<br>
+          Date: {{ event.date }} {{ event.time_zone }}<br>
+          Description: {{ event.description }}
+      </div>
   </div>
   {% endfor %}
 </div>
