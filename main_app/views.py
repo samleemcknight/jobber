@@ -24,13 +24,14 @@ def profile(request):
 
 
 def view_profile(request, user_id):
+  events = Event.objects.filter(user__id=user_id)
+  print(events)
   if user_id:
     user = User.objects.get(id=user_id)
   else:
     user = request.user
   date = user.date_joined
   user.date_joined = date.strftime("%B %d, %Y")
-  events = Event.objects.all()
   context = {
     'user': user,
     'events': events
@@ -84,7 +85,6 @@ def event_register(request, event_id):
   success_message = ''
   if request.POST['action'] == 'register':
     event.user.add(request.user)
-  # using a GET method in a form to make the code DRY-er
   else: 
     event.user.remove(request.user)
   return redirect('event_detail', event_id)
