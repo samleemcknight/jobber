@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.utils import timezone, dateformat
 from django.contrib.auth import login
 
 from .forms import SignupForm, EventForm, EditProfileForm
@@ -20,40 +20,42 @@ def home(request):
 
 def profile(request):
   events = Event.objects.filter(user__id=request.user.id)
+  date_joined = request.user.date_joined.strftime("%B %d, %Y")
+  last_login = request.user.last_login.strftime("%B %d, %Y")
   context = {
-    'events': events
+    'events': events,
+    'date_joined': date_joined,
+    'last_login': last_login
   }
   return render(request, 'registration/profile.html', context)
 
 def view_profile(request, user_id):
-  events = Event.objects.filter(user__id=user_id)
-  if user_id:
+  # Edited the following conditional to get rid of any errors result from tring to get to 
+  # a url with a user.id that doesn't exist.
+  # It also makes it so that the logged-in user doesn't have two separate profiles
+  user = User.objects.all()
+  if user.filter(pk=user_id).exists() and user_id != request.user.id:
     user = User.objects.get(id=user_id)
   else:
-    user = request.user
-  date = user.date_joined
-  user.date_joined = date.strftime("%B %d, %Y")
+    return redirect('profile')
+  # if we're formatting the date this way, maybe we can just format it in the user model?
+  user.date_joined = user.date_joined.strftime("%B %d, %Y")
+  user.last_login = user.last_login.strftime("%B %d, %Y")
+  events = Event.objects.filter(user__id=user_id)
   context = {
     'user': user,
     'events': events
   }
   return render(request, 'registration/profile.html', context)
 
-def edit_profile(request, user_id):
-  user = User.objects.get(id=user_id)
-  if user.id == request.user.id:
-    profile_form = EditProfileForm(request.POST, instance=user)
-    
-    if request.POST and profile_form.is_valid():
-
-      profile_form.save()
-
-      return redirect('view_profile', user_id=user_id)
-    else:
-      return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
-
+def edit_profile(request):
+  user = User.objects.get(id=request.user.id)
+  profile_form = EditProfileForm(request.POST or None, instance=user)
+  if request.POST and profile_form.is_valid():
+    profile_form.save()
+    return redirect('profile')
   else:
-    return redirect('view_profile', user_id=request.user.id)
+    return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
 
 def event_detail(request, event_id):
   event = Event.objects.get(id=event_id)
