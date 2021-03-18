@@ -30,9 +30,10 @@ def view_profile(request, user_id):
     user = request.user
   date = user.date_joined
   user.date_joined = date.strftime("%B %d, %Y")
-  print('date: ', date)
+  events = Event.objects.all()
   context = {
-    'user': user
+    'user': user,
+    'events': events
   }
   return render(request, 'registration/profile.html', context)
 
