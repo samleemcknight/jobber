@@ -8,13 +8,18 @@
   <p>Username: {{ user }}</p>
   <p>Date: {{ user.date_joined }}</p>
   <p>Last Active: {{ user.last_login }}</p>
+
 {% if user.id == request.user.id  %}
 
- <form method="POST" action="{% url 'edit_profile' user.id %}">
-    {% csrf_token %}
-    {{ form.as_p }}
+<form method="POST" action="{% url 'edit_profile' user.id %}">
+  {% csrf_token %}
+  {{ form.as_p }}
     <input type="submit" class="btn" value="Edit Profile">
-  </form>
+</form>
+<br>
+<form action="{% url 'change-password' %}">
+    <input type="submit" class="btn" value="Change Password" />
+</form>
 {% endif %}
 
 {% else %}

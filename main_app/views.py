@@ -30,9 +30,10 @@ def view_profile(request, user_id):
     user = request.user
   date = user.date_joined
   user.date_joined = date.strftime("%B %d, %Y")
-  print('date: ', date)
+  events = Event.objects.all()
   context = {
-    'user': user
+    'user': user,
+    'events': events
   }
   return render(request, 'registration/profile.html', context)
 
@@ -94,7 +95,7 @@ def search_bar(request):
   if request.method == 'GET':
     search = request.GET.get('search')
     search_term = f"{search}"
-    events = Event.objects.all().filter(name=search)
+    events = Event.objects.all().filter(name__icontains=search)
     context = {
       'events': events,
       'categories': categories,
