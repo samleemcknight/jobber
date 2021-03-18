@@ -24,10 +24,6 @@ def profile(request):
     'events': events
   }
   return render(request, 'registration/profile.html', context)
-<<<<<<< HEAD
-
-=======
->>>>>>> submain
 
 def view_profile(request, user_id):
   events = Event.objects.filter(user__id=user_id)
