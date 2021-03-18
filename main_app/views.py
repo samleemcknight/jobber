@@ -14,7 +14,7 @@ def home(request):
   categories = Category.objects.all()
   context = {
     'events': events,
-    'categories': categories
+    'categories': categories,
   }
   return render(request, 'index.html', context)
 
@@ -24,11 +24,13 @@ def profile(request):
     'events': events
   }
   return render(request, 'registration/profile.html', context)
+<<<<<<< HEAD
 
+=======
+>>>>>>> submain
 
 def view_profile(request, user_id):
   events = Event.objects.filter(user__id=user_id)
-  print(events)
   if user_id:
     user = User.objects.get(id=user_id)
   else:
@@ -109,12 +111,12 @@ def search_bar(request):
 def filter(request):
   events = Event.objects.filter(category__name=request.POST['category'])
   categories = Category.objects.all()
-  search_term = f"{request.POST['category']}"
+  filter_term = f"{request.POST['category']}"
   if request.method == 'POST':
     context = {
       'events': events,
       'categories': categories,
-      'search_term': search_term
+      'filter_term': filter_term
     }
     return render(request, 'events/search_result.html', context)
 

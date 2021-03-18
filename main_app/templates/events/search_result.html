@@ -1,37 +1,65 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="form-control">
-<form action="{% url 'search' %}" method="GET">
-  <input type="text" name="search" placeholder="Search Event"> 
-  <button class="btn blue darken-3" type="submit">Search</button>
-</form>
-<form action="{% url 'filter'%}" method="POST">
-{% csrf_token %}
-  <label for="category" class="select-label">Filter by Industry or Topic:</label>
-      <select name="category" id="category">
-        {% for category in categories %}
-          <option value="{{category.name}}">{{category.name}}</option>
-        {% endfor %}
-        <input type="submit" class="btn blue darken-3" value="Filter">
-      </select>
-</form>
-{% if events %}
-    <h3>Result Found for {{ search_term }}</h3>
-    <br>
-
+{% load static %}
+<!-- Header Image -->
 <div class="row">
-  <div class="col s12">
-    {% for event in events %}
-      <div class="card">
-        <div class="card-content">
-          <a href="{% url 'event_detail' event.id %}"><h3>{{ event.name }}</h3></a>
-          {{ event.description }}
-          <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
-        </div>
-      </div>
-    {% endfor %}
+    <img src="{% static 'public/undraw_career_development.svg' %}" alt="career development svg" id="svg-career" class="col s12">
+</div>
+
+<!-- Filter & Search Bar -->
+<div class="row">
+  <div class="col s3">
+    <form action="{% url 'filter'%}" method="POST" id="select-form">
+    {% csrf_token %}
+      <select name="category" id="category-filter" onchange="this.form.submit()">
+          {% if filter_term %}
+            <option value="{{ filter_term }}">{{ filter_term }}</option>
+          {% else %}
+            <option value="">----</option>
+          {% endif %}
+          {% for category in categories %}
+            {% if category.name != filter_term %}
+              <option value="{{category.name}}">{{category.name}}</option>
+            {% endif %}
+          {% endfor %}
+      </select>
+    </form>
+  </div>
+  <div class="col s9">
+    <form action="{% url 'search' %}" method="GET">
+      <input type="text" name="search" placeholder="Search Events" class="col s9"> 
+      <button class="btn blue darken-3 submit-search col s3" type="submit">Search</button>
+    </form>
   </div>
 </div>
+
+<!-- Search Results -->
+<div class="row">
+  <div class="col s12">
+    {% if events %}
+      {% if search_term %}
+        <h5>result(s) found for "{{ search_term }}"</h5>
+        <br>
+      {% else %}
+        <h5>filtered results for "{{ filter_term }}"</h5>
+        <br>
+      {% endif %}
+  </div>
+</div>
+
+{% for event in events %}
+  <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <a href="{% url 'event_detail' event.id %}"><h5>{{ event.name }}</h5></a>
+            {{ event.description|truncatechars:100 }}
+            <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endfor %}
     {% else %}
       <h3>No results found</h3>
 
