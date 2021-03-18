@@ -32,7 +32,7 @@ def view_profile(request, user_id):
     user = request.user
   date = user.date_joined
   user.date_joined = date.strftime("%B %d, %Y")
-  print('date: ', date)
+  events = Event.objects.all()
   context = {
     'user': user,
     'events': events
