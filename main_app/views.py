@@ -12,11 +12,19 @@ from .models import Event, Category, User
 
 # home view:
 def home(request):
-  events = Event.objects.all().order_by('-date')
+  events = Event.objects.all().order_by('date')
   categories = Category.objects.all()
+  today = datetime.now()
+  today = make_aware(today)
+  events_list = []
+  for event in events:
+    if event.date >= today:
+      events_list.append(event)
+      print(events_list)
   context = {
-    'events': events,
+    'events': events_list,
     'categories': categories,
+
   }
   return render(request, 'index.html', context)
 
@@ -146,6 +154,13 @@ def signup(request):
     form = SignupForm(request.POST)
     if form.is_valid():
       user = form.save()
+      send_mail(
+      'CONFIRMATION: Welcome to Jobber',
+      'Thank you for joining Jobber. Here is your confirmation email. ',
+      'projectjobber@gmail.com',
+      [user.email],
+      fail_silently=False,
+      )
       login(request, user)
       return redirect('home')
     else:
