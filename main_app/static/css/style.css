@@ -1,0 +1,167 @@
+body {
+  font-family: 'Raleway', sans-serif;;
+}
+
+.brand-logo {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.title h1 {
+  font-size: 3rem;
+}
+/* custom classes */
+.modal-input {
+  margin: 0;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.keyword {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.event-cards {
+  height: 15rem;
+  width: 50vw;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.registration-text {
+  color: black;
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+.search-bar input::placeholder {
+  padding-left: 5px;
+}
+
+.table-wrapper {
+  border-right: 1px solid rgba(128, 128, 128, 0.3);
+  border-left: 1px solid rgba(128, 128, 128, 0.3);
+  overflow-x: auto;
+}
+
+section {
+  width: 80%;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  margin: 20px 0;
+}
+
+section .item {
+  padding: 0 2px;
+  transition: 250ms all;
+}
+
+.item:hover {
+  margin: 0 40px 0 40px;
+  transform: scale(1.1);
+
+}
+.select-label {
+  color: black;
+  position: relative;
+  font-size: 1rem;
+  top: 4px;
+}
+
+.submit-search {
+  height: 3rem;
+}
+
+section .a {
+  position: absolute;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background:rgb(0,0,0);
+  width: 40px;
+  padding: 15px;
+  text-align: center;
+  z-index: 1;
+  right: -150px;
+  top: 4rem;
+  opacity: 0;
+  transition: opacity, 500ms;
+}
+
+section .a:hover {
+  opacity: 1;
+}
+
+/* override materialize classes: */
+label {
+  font-size: 1rem;
+}
+
+nav {
+  background-color: rgba(0, 18, 18, 0.7);
+}
+
+nav h4 {
+  color: black;
+}
+
+input[type=text]:not(.browser-default) {
+  height: 3rem;
+}
+
+.modal .modal-content {
+  padding: 10px;
+}
+
+.modal-content {
+  height: 60vh;
+}
+
+.modal-content label {
+  margin: 0;
+  padding: 0;
+}
+
+#modal2 {
+  top: 30% !important;
+  width: 40% !important;
+  height: 12rem !important;
+  opacity: 0.9 !important;
+}
+
+.row .col {
+  padding-right: 0;
+  padding-left: 1px;
+}
+
+/* custom id's */
+#category-filter {
+  display: block;
+  border: 1.2px solid black;
+  margin-right: 0;
+}
+
+#svg-resume {
+  margin-top: 10px;
+  height: 30vh;
+  float: right;
+}
+
+#svg-career {
+  display: flex;
+  justify-content: center;
+  height: 30vh;
+  margin: 20px 0 20px 0;
+}
+
+@media only screen and (min-width: 990px) {
+  .event-cards {
+    height: 13rem;
+    width: 30vw;
+    margin: 5px;
+    overflow: hidden;
+  }
+}

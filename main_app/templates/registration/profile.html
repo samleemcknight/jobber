@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+  <h2>{% block title %} {{request.user.get_full_name}} {% endblock %}</h2>
+  <p>Username: {{ user }}</p>
+  <p>Date Joined: {{ date_joined }} </p>
+  <p>Last Active: {{ last_login }}</p>
+
+{% if user.id == request.user.id  %}
+<a class="btn" href="{% url 'edit_profile' %}">Edit Profile</a>
+<br>
+<br>
+<form action="{% url 'change-password' %}">
+    <input type="submit" class="btn" value="Change Password" />
+</form>
+{% endif %}
+
+{% else %}
+
+<h3>Login to view Profile</h3>
+
+{% endif %}
+<h4>Upcoming Events:</h4>
+
+  <div class="table-wrapper">
+    <section>
+      {% for event in future_events %}
+        <div class="card col s3 event-cards upcoming-event item">
+          <div class="card-content">
+            <a href="{% url 'event_detail' event.name %}"><span class="keyword">{{ event.name }}</span></a><br>
+            <span class="keyword">Date:</span> {{ event.date }} {{ event.time_zone }}<br>
+            <span class="keyword">Description:</span> {{ event.description|truncatechars:100 }}
+          </div>
+        </div>
+      {% endfor %}
+      <p class="a">></p>
+    </section>
+  </div>
+</div>
+
+<h4>Past Events:</h4>
+<div class="table-wrapper">
+  <section>
+    {% for event in past_events %}
+    <div class="card col s3 event-cards upcoming-event item">
+        <div class="card-content">
+          <a href="{% url 'event_detail' event.name %}"><span class="keyword">{{ event.name }}</span></a><br>
+          <span class="keyword">Date:</span> {{ event.date }} {{ event.time_zone }}<br>
+          <span class="keyword">Description:</span> {{ event.description|truncatechars:100 }}
+        </div>
+    </div>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if success_message %}
+  <p>{{ success_message }}</p>
+{% endif %}
+  
+<h2>{{ event.name }}</h2>
+<hr>
+    
+<p><span class="keyword">Industry Focus:</span> {{ categories }}</p>
+<p><span class="keyword">Date:</span> {{ event.date }} {{ event.time_zone }}</p>
+<p class="keyword">Description:</p>
+<p>{{ event.description }}</p>
+<p><span class="keyword">Speaker(s):</span> {{event.speaker}}</p>
+
+{% if user.is_authenticated %}
+  {% if atendee.id == request.user.id %}
+    <p><span class="keyword">Location:</span> <a href="{{event.location_link}}">{{event.location_link}}</a></p>
+      
+    <a class="waves-effect waves-light btn red darken-1 modal-trigger" href="#modal2">Unregister</a>
+  {% else%}
+    <form action="{% url 'event_register' event.id %}" method="POST">
+      {% csrf_token %}
+      <input hidden type="text" name="action" value="register">
+      <input type="submit" class="btn blue darken-3" value="Register">
+    </form>
+  {% endif %}
+
+<div class="guestlist">
+  <h4>Attendees</h4>
+  <p>Guests</p>
+  {% for guest in guests %}
+    <li>{{ guest.first_name }} {{ guest.last_name }}</li>
+  {% endfor %}
+</div>
+
+{% endif %}
+
+{% endblock %}
