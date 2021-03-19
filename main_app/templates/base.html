@@ -17,7 +17,12 @@
       M.Modal.init(elem);
       M.Modal.init(elem1);
     });
+    document.addEventListener('DOMContentLoaded', function() {
+      const elem = document.querySelector('.carousel');
+      M.Carousel.init(elem);
+    });
   </script>
+  <script defer src="{% static 'js/app.js' %}"></script>
   <title>Jobber</title>
 </head>
 <body>
