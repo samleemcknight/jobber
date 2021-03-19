@@ -30,9 +30,9 @@
       {% for event in future_events %}
         <div class="card col s3 event-cards">
             <div class="card-content">
-              Event: {{ event.name }}<br>
-              Date: {{ event.date }} {{ event.time_zone }}<br>
-              Description: {{ event.description|truncatechars:100 }}
+              <span class="keyword">Event:</span> {{ event.name }}<br>
+              <span class="keyword">Date:</span> {{ event.date }} {{ event.time_zone }}<br>
+              <span class="keyword">Description:</span> {{ event.description|truncatechars:100 }}
               <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
             </div>
         </div>
@@ -46,9 +46,9 @@
   {% for event in past_events %}
   <div class="card col m4 event-cards">
       <div class="card-content">
-        Event: {{ event.name }}<br>
-        Date: {{ event.date }} {{ event.time_zone }}<br>
-        Description: {{ event.description|truncatechars:100 }}
+        <span class="keyword">Event:</span> {{ event.name }}<br>
+        <span class="keyword">Date:</span>  {{ event.date }} {{ event.time_zone }}<br>
+        <span class="keyword">Description:</span> {{ event.description|truncatechars:100 }}
         <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
       </div>
   </div>

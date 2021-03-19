@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} ">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
@@ -33,48 +35,48 @@
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
           <!-- modal for login/signup -->
-          <div id="modal1" class="modal">
-            <div class="modal-content">
-              <form method="POST" action="{% url 'login' %}">
-                <h4>Log In</h4>
-                {% csrf_token %}
-                <label for="username">Username:</label>
-                <input type="text" name="username" class="modal-input">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="modal-input">
-                <input type="submit" class="btn blue darken-3" value="login" class="modal-input">
-                <input type="hidden" name="next" value="{{ next }}">
-              </form>
-            </div>
-            <div class="modal-content">
-              <form method="POST" action="{% url 'signup' %}">
-                <h4>Sign Up</h4>
-                {% csrf_token %}
-                <div class="row">
-                  <div class="col s-6">
-                    <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" class="modal-input"> 
-                  </div>
-                  <div class="col s-6">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" class="modal-input"> 
-                  </div>
-                </div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" class="modal-input">
-                <label for="email">Email:</label>
-                <input type="text" name="email" class="modal-input">
-                <label for="password1">Password:</label>
-                <input type="password" name="password1" class="modal-input">
-                <label for="password2">Confirm password:</label>
-                <input type="password" name="password2" class="modal-input">
-                <input type="submit" class="btn blue darken-3" value="sign up" class="modal-input">
-                <input type="hidden" name="next" value="{{ next }}">
-              </form>
-            </div>
-        </div>
-        {% endif %}
         </ul>
+      </div>
+    </nav>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <form method="POST" action="{% url 'login' %}">
+          <h5>Log In</h5>
+          {% csrf_token %}
+          <label for="username">Username:</label>
+          <input type="text" name="username" class="modal-input">
+          <label for="password">Password:</label>
+          <input type="password" name="password" class="modal-input">
+          <input type="submit" class="btn blue darken-3" value="login" class="modal-input">
+          <input type="hidden" name="next" value="{{ next }}">
+        </form>
+        <form method="POST" action="{% url 'signup' %}">
+          <h5>Sign Up</h5>
+          {% csrf_token %}
+          <div class="row">
+            <div class="col s-6">
+              <label for="first_name">First Name</label>
+              <input type="text" name="first_name" class="modal-input"> 
+            </div>
+            <div class="col s-6">
+              <label for="last_name">Last Name</label>
+              <input type="text" name="last_name" class="modal-input"> 
+            </div>
+          </div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="modal-input">
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="modal-input">
+            <label for="password1">Password:</label>
+            <input type="password" name="password1" class="modal-input">
+            <label for="password2">Confirm password:</label>
+            <input type="password" name="password2" class="modal-input">
+            <input type="submit" class="btn blue darken-3" value="sign up" class="modal-input">
+            <input type="hidden" name="next" value="{{ next }}">
+          </form>
+      </div>
+    </div>
+    {% endif %}
         <!-- modal for unregistering -->
         {% if event.id %}
           <div id="modal2" class="modal">
@@ -87,8 +89,6 @@
             </div>
           </div>
         {% endif %}
-      </div>
-    </nav>
   </header>
     <main class="container">
       {% block content %}

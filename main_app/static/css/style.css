@@ -1,3 +1,10 @@
+body {
+  font-family: 'Raleway', sans-serif;;
+}
+
+.brand-logo {
+  font-family: 'Montserrat', sans-serif;
+}
 
 .title h1 {
   font-size: 3rem;
@@ -65,6 +72,10 @@ section .item {
 }
 
 /* override materialize classes: */
+label {
+  font-size: 1rem;
+}
+
 nav {
   background-color: rgba(0, 18, 18, 0.7);
 }
@@ -73,12 +84,21 @@ nav h4 {
   color: black;
 }
 
-.modal {
-  height: 75% !important;
+input[type=text]:not(.browser-default) {
+  height: 3rem;
 }
 
 .modal .modal-content {
   padding: 10px;
+}
+
+.modal-content {
+  height: 60vh;
+}
+
+.modal-content label {
+  margin: 0;
+  padding: 0;
 }
 
 #modal2 {
