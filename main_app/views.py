@@ -6,6 +6,8 @@ from django.utils.timezone import make_aware, timezone
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import SignupForm, EventForm, EditProfileForm
+from django.core.mail import send_mail
+
 
 from .models import Event, Category, User
 
