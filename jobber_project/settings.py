@@ -79,8 +79,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'jobber',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
     }
 }
 
@@ -145,3 +143,6 @@ EMAIL_PORT = EMAIL_PORT
 EMAIL_USE_TLS = EMAIL_USE_TLS 
 EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+
+import django_heroku
+django_heroku.settings(locals())
