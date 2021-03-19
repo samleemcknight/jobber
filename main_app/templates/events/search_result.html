@@ -53,6 +53,7 @@
         <div class="card">
           <div class="card-content">
             <a href="{% url 'event_detail' event.id %}"><h5>{{ event.name }}</h5></a>
+            {{ event.date }}<br>
             {{ event.description|truncatechars:100 }}
             <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
           </div>
