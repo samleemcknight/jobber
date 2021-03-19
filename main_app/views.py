@@ -44,18 +44,14 @@ def profile(request):
 
 @login_required
 def view_profile(request, user_id):
-  # Edited the following conditional to get rid of any errors result from tring to get to 
-  # a url with a user.id that doesn't exist.
-  # It also makes it so that the logged-in user doesn't have two separate profiles
-  user = User.objects.all()
-  if user.filter(pk=user_id).exists() and user_id != request.user.id:
-    user = User.objects.get(id=user_id)
-  else:
+  user = User.objects.get(id=user_id)
+  if user_id == request.user.id:
     return redirect('profile')
-  # if we're formatting the date this way, maybe we can just format it in the user model?
+  # formats dates to not include times:
   user.date_joined = user.date_joined.strftime("%B %d, %Y")
   user.last_login = user.last_login.strftime("%B %d, %Y")
   events = Event.objects.filter(user__id=user_id)
+  # following 9 lnes separates events into past and future
   today = datetime.now()
   today = make_aware(today)
   future_events = []
@@ -82,8 +78,8 @@ def edit_profile(request):
   else:
     return render(request, 'registration/edit_profile.html', { 'user': user, 'profile_form': profile_form })
 
-def event_detail(request, event_id):
-  event = Event.objects.get(id=event_id)
+def event_detail(request, event_name):
+  event = Event.objects.get(name=event_name)
   categories = event.category.all()
   atendee = event.user.filter(id=request.user.id)
   guests = event.user.all()
