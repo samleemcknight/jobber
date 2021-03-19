@@ -1,4 +1,4 @@
-from secret_settings import *
+
 """
 Django settings for jobber_project project.
 
