@@ -9,12 +9,7 @@ class SignupForm(UserCreationForm):
   last_name = forms.CharField(max_length=30, required=False, help_text='Optional')
   email = forms.EmailField(max_length=200, help_text='Required')
   
-  def validate_email(value):
-    if User.objects.filter(email = value).exists():
-      raise ValidationError(
-          (f"{value} is taken."),
-          params = {'value':value}
-      )
+
 
   class Meta:
     model = User

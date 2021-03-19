@@ -1,3 +1,6 @@
+from django.conf import settings
+from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.utils import timezone, dateformat
 from django.contrib.auth import login
@@ -124,6 +127,13 @@ def signup(request):
     form = SignupForm(request.POST)
     if form.is_valid():
       user = form.save()
+      send_mail(
+      'Subject here',
+      'Here is the message.',
+      'projectjobber@gmail.com',
+      [user.email],
+      fail_silently=False,
+      )
       login(request, user)
       return redirect('home')
     else:
