@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
+from django.core.mail import send_mail
 from django.utils import dateformat
 from django.utils.timezone import make_aware, timezone
 from django.contrib.auth import login

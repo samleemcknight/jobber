@@ -79,8 +79,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'jobber',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
     }
 }
 
@@ -143,5 +141,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'projectjobber@gmail.com'
-EMAIL_HOST_PASSWORD = 'Gaproject1!'
+EMAIL_HOST_USER = USER
+EMAIL_HOST_PASSWORD = PASSWORD
