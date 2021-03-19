@@ -2,11 +2,9 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from datetime import timedelta, datetime
-from django.utils import dateformat
-from django.utils.timezone import make_aware, timezone
+from django.utils import timezone, dateformat
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
+
 from .forms import SignupForm, EventForm, EditProfileForm
 
 from .models import Event, Category, User
@@ -15,7 +13,7 @@ from .models import Event, Category, User
 
 # home view:
 def home(request):
-  events = Event.objects.all().order_by('-date')
+  events = Event.objects.all().order_by('date')
   categories = Category.objects.all()
   context = {
     'events': events,
@@ -23,29 +21,17 @@ def home(request):
   }
   return render(request, 'index.html', context)
 
-@login_required
 def profile(request):
   events = Event.objects.filter(user__id=request.user.id)
   date_joined = request.user.date_joined.strftime("%B %d, %Y")
   last_login = request.user.last_login.strftime("%B %d, %Y")
-  today = datetime.now()
-  today = make_aware(today)
-  future_events = []
-  past_events = []
-  for event in events:
-    if event.date >= today:
-      future_events.append(event)
-    else:
-      past_events.append(event)
   context = {
-    'past_events': past_events,
+    'events': events,
     'date_joined': date_joined,
-    'last_login': last_login,
-    'future_events': future_events
+    'last_login': last_login
   }
   return render(request, 'registration/profile.html', context)
 
-@login_required
 def view_profile(request, user_id):
   # Edited the following conditional to get rid of any errors result from tring to get to 
   # a url with a user.id that doesn't exist.
@@ -59,23 +45,12 @@ def view_profile(request, user_id):
   user.date_joined = user.date_joined.strftime("%B %d, %Y")
   user.last_login = user.last_login.strftime("%B %d, %Y")
   events = Event.objects.filter(user__id=user_id)
-  today = datetime.now()
-  today = make_aware(today)
-  future_events = []
-  past_events = []
-  for event in events:
-    if event.date >= today:
-      future_events.append(event)
-    else:
-      past_events.append(event)
   context = {
     'user': user,
-    'past_events': past_events,
-    'future_events': future_events
+    'events': events
   }
   return render(request, 'registration/profile.html', context)
 
-@login_required
 def edit_profile(request):
   user = User.objects.get(id=request.user.id)
   profile_form = EditProfileForm(request.POST or None, instance=user)
@@ -110,7 +85,6 @@ def event_detail(request, event_id):
 
   return render(request, 'events/event.html', context)
 
-@login_required
 def event_register(request, event_id):
   pass
   event = Event.objects.get(id=event_id)
@@ -154,8 +128,8 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       send_mail(
-      'Subject here',
-      'Here is the message.',
+      'CONFIRMATION:Welcome to Jobber',
+      'Thank you ',
       'projectjobber@gmail.com',
       [user.email],
       fail_silently=False,
