@@ -82,6 +82,7 @@ nav h4 {
 #svg-resume {
   margin-top: 10px;
   height: 30vh;
+  float: right;
 }
 
 #svg-career {

@@ -6,7 +6,7 @@
 
   <h2>{% block title %} {{ user.first_name }} {{user.last_name }} {% endblock %}</h2>
   <p>Username: {{ user }}</p>
-  <p>Date Joined: {{ date_joined }}</p>
+  <p>Date Joined: {{ date_joined }} </p>
   <p>Last Active: {{ last_login }}</p>
 
 {% if user.id == request.user.id  %}
@@ -25,12 +25,13 @@
 {% endif %}
 <h4>Upcoming Events:</h4>
 <div class="row">
-  {% for event in events %}
+  {% for event in future_events %}
   <div class="card col m4 event-cards">
       <div class="card-content">
-          Event: {{ event.name }}<br>
-          Date: {{ event.date }} {{ event.time_zone }}<br>
-          Description: {{ event.description }}
+        Event: {{ event.name }}<br>
+        Date: {{ event.date }} {{ event.time_zone }}<br>
+        Description: {{ event.description|truncatechars:100 }}
+        <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
       </div>
   </div>
   {% endfor %}
@@ -38,12 +39,13 @@
 
 <h4>Past Events:</h4>
 <div class="row">
-  {% for event in events %}
+  {% for event in past_events %}
   <div class="card col m4 event-cards">
       <div class="card-content">
-          Event: {{ event.name }}<br>
-          Date: {{ event.date }} {{ event.time_zone }}<br>
-          Description: {{ event.description }}
+        Event: {{ event.name }}<br>
+        Date: {{ event.date }} {{ event.time_zone }}<br>
+        Description: {{ event.description|truncatechars:100 }}
+        <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
       </div>
   </div>
   {% endfor %}
