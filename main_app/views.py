@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from datetime import timedelta, datetime
+from datetime import datetime
 from django.utils import dateformat
 from django.utils.timezone import make_aware, timezone
 from django.contrib.auth import login
