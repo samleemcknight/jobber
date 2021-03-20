@@ -23,7 +23,6 @@ def home(request):
   for event in events:
     if event.date >= today:
       events_list.append(event)
-      print(events_list)
   context = {
     'events': events_list,
     'categories': categories,
