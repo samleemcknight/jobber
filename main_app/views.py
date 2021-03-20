@@ -138,6 +138,19 @@ def search_bar(request):
     }
     return render(request, 'events/search_result.html', context)
 
+@login_required
+def edit_event(request, event_name):
+  if request.user.is_superuser:
+    event = Event.objects.get(name=event_name)
+    form = EventForm(request.POST or None, instance=event)
+    if request.method == 'POST' and form.is_valid():
+      form.save()
+      return redirect('event_detail', event_name=event_name)
+    else:
+      return render(request, 'events/edit.html', { "form": form, "event": event })
+  else:
+    return redirect('event_detail', event_name=event_name)
+
 def filter(request):
   events = Event.objects.filter(category__name=request.POST['category'])
   categories = Category.objects.all()
