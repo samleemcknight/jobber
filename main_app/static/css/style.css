@@ -7,7 +7,7 @@ body {
 }
 
 .title h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 /* custom classes */
 .modal-input {
@@ -59,11 +59,6 @@ section .item {
   transition: 250ms all;
 }
 
-.item:hover {
-  margin: 0 40px 0 40px;
-  transform: scale(1.1);
-
-}
 .select-label {
   color: black;
   position: relative;
@@ -147,6 +142,7 @@ input[type=text]:not(.browser-default) {
   display: block;
   border: 1.2px solid black;
   margin-right: 0;
+  margin-bottom: 10px;
 }
 
 #svg-resume {
@@ -168,5 +164,10 @@ input[type=text]:not(.browser-default) {
     width: 30vw;
     margin: 5px;
     overflow: hidden;
+  }
+  .item:hover {
+    margin: 0 40px 0 40px;
+    transform: scale(1.1);
+
   }
 }

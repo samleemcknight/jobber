@@ -4,13 +4,14 @@
     "pk": 1,
     "fields": {
       "name": "Node Event",
-      "date": "2021-03-16T12:00:00Z",
+      "date": "2021-03-16",
+      "time": "12:00:00",
       "time_zone": "PST",
       "description": "An event for node",
       "speaker": "Sam",
       "location_link": "http://localhost:8000/admin/main_app/event/add/",
       "user": [
-        
+       
       ],
       "category": [
         1,
@@ -24,7 +25,8 @@
     "pk": 2,
     "fields": {
       "name": "Get a Job",
-      "date": "2021-04-22T18:00:00Z",
+      "date": "2021-04-22",
+      "time": "12:00:00",
       "time_zone": "PST",
       "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero sapiente dolorum architecto dolore voluptate, cum vel in!",
       "speaker": "Cicero",
@@ -43,13 +45,14 @@
     "pk": 3,
     "fields": {
       "name": "Learn JavaScript",
-      "date": "2021-03-01T20:00:00Z",
+      "date": "2021-03-01",
+      "time": "12:00:00",
       "time_zone": "PST",
       "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero sapiente dolorum architecto dolore voluptate, cum vel in!",
-      "speaker": "Jon Bolton",
+      "speaker": "John Bolton",
       "location_link": "localhost:8000",
       "user": [
-        
+       
       ],
       "category": [
         2,
@@ -62,10 +65,11 @@
     "pk": 4,
     "fields": {
       "name": "Learn Express",
-      "date": "2021-05-13T22:00:00Z",
+      "date": "2021-05-13",
+      "time": "12:00:00",
       "time_zone": "ET",
       "description": "Finally, a word on using get_or_create() in Django views. Please make sure to use it only in POST requests unless you have a good reason not to. GET requests shouldn’t have any effect on data. Instead, use POST whenever a request to a page has a side effect on your data. For more, see Safe methods.",
-      "speaker": "Django Reinhart",
+      "speaker": "Django Reinhardt III",
       "location_link": "https://docs.djangoproject.com/en/3.1/ref/models/querysets/",
       "user": [
         
@@ -80,16 +84,18 @@
     "pk": 5,
     "fields": {
       "name": "Django for the Real World",
-      "date": "2021-04-23T04:00:00Z",
+      "date": "2021-04-23",
+      "time": "12:00:00",
       "time_zone": "MST",
       "description": "The extensible customer base has an executive advisory board. Transition phases (according to the latest polls) have a skill set. Let us not deceive ourselves into thinking that a state-of-the-art transition phase can not be the executive advisory boards. Testing “an environment easily will succeed.",
       "speaker": "Matthew Lee",
       "location_link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "user": [
-        
+      
       ],
       "category": [
         2,
+        3,
         5
       ]
     }
@@ -99,16 +105,53 @@
     "pk": 6,
     "fields": {
       "name": "Technical Interview Practice",
-      "date": "2021-04-01T01:00:00Z",
+      "date": "2021-04-01",
+      "time": "12:00:00",
       "time_zone": "ET",
       "description": "Revolutionary human resource allocations engender strategy. A context establishes an action item for resolutions. 90% solutions succeed, and enabling disclosures take ownership of leading-edge contexts. A core competency bravely ensures solutions. The dialogue enhances a proactive writeoff. Schedule",
-      "speaker": "Dale Cooper",
+      "speaker": "Agent Dale Cooper",
       "location_link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "user": [
         
       ],
       "category": [
         2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 31,
+    "fields": {
+      "name": "Node.js",
+      "date": "2021-03-26",
+      "time": "12:00:00",
+      "time_zone": "PST",
+      "description": "Scientists attributed the earthquakes to magma intrusions, molten rock movement about a kilometer below the earth's crust. Meteorological officials first mentioned the possibility of an eruption on March 3, as these intrusions continued and earthquake activity intensified.",
+      "speaker": "Steve Works",
+      "location_link": "https://github.com/samleemcknight/kraken_collector/tree/main/main_app/templates",
+      "user": [],
+      "category": [
+        1,
+        2,
+        4
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 32,
+    "fields": {
+      "name": "Find Your Dream Job",
+      "date": "2021-03-20",
+      "time": "12:00:00",
+      "time_zone": "PST",
+      "description": "A convenience method for looking up an object with the given kwargs (may be empty if your model has defaults for all fields), creating one if necessary.\r\n\r\nReturns a tuple of (object, created), where object is the retrieved or created object and created is a boolean specifying whether a new object was created.\r\n\r\nThis is meant to prevent duplicate objects from being created when requests are made in parallel, and as a shortcut to boilerplatish code. For example:",
+      "speaker": "Stevie Wonder",
+      "location_link": "https://www.youtube.com/c",
+      "user": [],
+      "category": [
         3
       ]
     }
