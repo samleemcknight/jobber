@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from datetime import datetime
+from datetime import datetime, date
 from django.core.mail import send_mail
 from django.utils import dateformat
 from django.utils.timezone import make_aware, timezone
@@ -17,8 +17,7 @@ from .models import Event, Category, User
 def home(request):
   events = Event.objects.all().order_by('date')
   categories = Category.objects.all()
-  today = datetime.now()
-  today = make_aware(today)
+  today = date.today()
   events_list = []
   for event in events:
     if event.date >= today:
@@ -35,8 +34,7 @@ def profile(request):
   events = Event.objects.filter(user__id=request.user.id)
   date_joined = request.user.date_joined.strftime("%B %d, %Y")
   last_login = request.user.last_login.strftime("%B %d, %Y")
-  today = datetime.now()
-  today = make_aware(today)
+  today = date.today()
   future_events = []
   past_events = []
   for event in events:
