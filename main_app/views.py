@@ -123,7 +123,7 @@ def event_register(request, event_id):
     event.user.add(request.user)
   else: 
     event.user.remove(request.user)
-  return redirect('event_detail', event_id)
+  return redirect('event_detail', event.name)
 
 def search_bar(request):
   categories = Category.objects.all()
