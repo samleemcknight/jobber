@@ -43,9 +43,10 @@ class Category(models.Model):
 
 class Event(models.Model):
   name = models.CharField(max_length=100)
-  date = models.DateTimeField("Event Date")
+  date = models.DateField("Event Date")
+  time = models.TimeField("Event Time", default="12:00:00")
   time_zone = models.CharField(max_length=3, choices=TIME_ZONE, default=TIME_ZONE[0][0])
-  description = models.CharField(max_length=300)
+  description = models.TextField(max_length=1500)
   speaker = models.CharField(max_length=50)
   location_link = models.CharField(max_length=250)
 

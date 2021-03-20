@@ -1,0 +1,151 @@
+[
+  {
+    "model": "main_app.event",
+    "pk": 1,
+    "fields": {
+      "name": "Node Event",
+      "date": "2021-03-16T12:00:00Z",
+      "time_zone": "PST",
+      "description": "An event for node",
+      "speaker": "Sam",
+      "location_link": "http://localhost:8000/admin/main_app/event/add/",
+      "user": [
+        
+      ],
+      "category": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 2,
+    "fields": {
+      "name": "Get a Job",
+      "date": "2021-04-22T18:00:00Z",
+      "time_zone": "PST",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero sapiente dolorum architecto dolore voluptate, cum vel in!",
+      "speaker": "Cicero",
+      "location_link": "localhost:8000",
+      "user": [
+        
+      ],
+      "category": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 3,
+    "fields": {
+      "name": "Learn JavaScript",
+      "date": "2021-03-01T20:00:00Z",
+      "time_zone": "PST",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero sapiente dolorum architecto dolore voluptate, cum vel in!",
+      "speaker": "Jon Bolton",
+      "location_link": "localhost:8000",
+      "user": [
+        
+      ],
+      "category": [
+        2,
+        4
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 4,
+    "fields": {
+      "name": "Learn Express",
+      "date": "2021-05-13T22:00:00Z",
+      "time_zone": "ET",
+      "description": "Finally, a word on using get_or_create() in Django views. Please make sure to use it only in POST requests unless you have a good reason not to. GET requests shouldn’t have any effect on data. Instead, use POST whenever a request to a page has a side effect on your data. For more, see Safe methods.",
+      "speaker": "Django Reinhart",
+      "location_link": "https://docs.djangoproject.com/en/3.1/ref/models/querysets/",
+      "user": [
+        
+      ],
+      "category": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 5,
+    "fields": {
+      "name": "Django for the Real World",
+      "date": "2021-04-23T04:00:00Z",
+      "time_zone": "MST",
+      "description": "The extensible customer base has an executive advisory board. Transition phases (according to the latest polls) have a skill set. Let us not deceive ourselves into thinking that a state-of-the-art transition phase can not be the executive advisory boards. Testing “an environment easily will succeed.",
+      "speaker": "Matthew Lee",
+      "location_link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "user": [
+        
+      ],
+      "category": [
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "main_app.event",
+    "pk": 6,
+    "fields": {
+      "name": "Technical Interview Practice",
+      "date": "2021-04-01T01:00:00Z",
+      "time_zone": "ET",
+      "description": "Revolutionary human resource allocations engender strategy. A context establishes an action item for resolutions. 90% solutions succeed, and enabling disclosures take ownership of leading-edge contexts. A core competency bravely ensures solutions. The dialogue enhances a proactive writeoff. Schedule",
+      "speaker": "Dale Cooper",
+      "location_link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "user": [
+        
+      ],
+      "category": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "main_app.category",
+    "pk": 1,
+    "fields": {
+      "name": "Node.js"
+    }
+  },
+  {
+    "model": "main_app.category",
+    "pk": 2,
+    "fields": {
+      "name": "Tech"
+    }
+  },
+  {
+    "model": "main_app.category",
+    "pk": 3,
+    "fields": {
+      "name": "Jobs"
+    }
+  },
+  {
+    "model": "main_app.category",
+    "pk": 4,
+    "fields": {
+      "name": "JavaScript"
+    }
+  },
+  {
+    "model": "main_app.category",
+    "pk": 5,
+    "fields": {
+      "name": "Django"
+    }
+  }
+]

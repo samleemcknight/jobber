@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Event</h2>
+
+<form action="{% url 'create_event' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <label for="category">Category:</label>
+  <input type="text" name="category">
+  <input type="submit" class="btn blue darken-3" value="Create">
+</form>
+
+{% endblock %}

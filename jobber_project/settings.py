@@ -1,4 +1,6 @@
-from secret_settings import *
+from dotenv import load_dotenv
+load_dotenv()
+import os
 """
 Django settings for jobber_project project.
 
@@ -21,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY
+SECRET_KEY = 'eme#fxc+j7lj6qpt2ag+1d_od9pdt4e*ql$mv_ov8s+)+43+7c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -137,12 +139,12 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/profile/'
 LOGOUT_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = EMAIL_BACKEND
-EMAIL_HOST = EMAIL_HOST
-EMAIL_PORT = EMAIL_PORT
-EMAIL_USE_TLS = EMAIL_USE_TLS 
-EMAIL_HOST_USER = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'projectjobber@gmail.com'
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 import django_heroku
 django_heroku.settings(locals())
