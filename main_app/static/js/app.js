@@ -5,8 +5,13 @@ M.Datepicker.init(dateEl, {
   setDefaultDate: true,
   autoClose: true
 });
+
 const time = document.getElementById('id_time');
-M.Timepicker.init(time);
+M.Timepicker.init(time, {
+  format: 'hh-mm-ss',
+  defaultTime: 'now',
+  twelveHour: false,
+});
 const selectEl = document.getElementById('id_time_zone');
 M.FormSelect.init(selectEl);
 
