@@ -162,7 +162,7 @@ def signup(request):
       'Thank you for joining Jobber. Here is your confirmation email. ',
       'projectjobber@gmail.com',
       [user.email],
-      fail_silently=False,
+      fail_silently=True,
       )
       login(request, user)
       return redirect('home')
