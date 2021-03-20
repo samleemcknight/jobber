@@ -10,7 +10,7 @@
       "speaker": "Sam",
       "location_link": "http://localhost:8000/admin/main_app/event/add/",
       "user": [
-        1
+        
       ],
       "category": [
         1,
@@ -30,7 +30,7 @@
       "speaker": "Cicero",
       "location_link": "localhost:8000",
       "user": [
-        1
+        
       ],
       "category": [
         2,
@@ -49,7 +49,7 @@
       "speaker": "Jon Bolton",
       "location_link": "localhost:8000",
       "user": [
-        1
+        
       ],
       "category": [
         2,
@@ -68,7 +68,7 @@
       "speaker": "Django Reinhart",
       "location_link": "https://docs.djangoproject.com/en/3.1/ref/models/querysets/",
       "user": [
-        1
+        
       ],
       "category": [
         1
@@ -86,7 +86,7 @@
       "speaker": "Matthew Lee",
       "location_link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "user": [
-        1
+        
       ],
       "category": [
         2,
@@ -105,7 +105,7 @@
       "speaker": "Dale Cooper",
       "location_link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "user": [
-        1
+        
       ],
       "category": [
         2,
