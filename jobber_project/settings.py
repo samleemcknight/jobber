@@ -1,4 +1,6 @@
-from secret_settings import *
+from dotenv import load_dotenv
+load_dotenv()
+import os
 """
 Django settings for jobber_project project.
 
@@ -142,7 +144,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'projectjobber@gmail.com'
-EMAIL_HOST_PASSWORD = PASSWORD
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 import django_heroku
 django_heroku.settings(locals())

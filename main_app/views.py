@@ -123,7 +123,7 @@ def event_register(request, event_id):
     event.user.add(request.user)
   else: 
     event.user.remove(request.user)
-  return redirect('event_detail', event_id)
+  return redirect('event_detail', event.name)
 
 def search_bar(request):
   categories = Category.objects.all()
@@ -162,7 +162,7 @@ def signup(request):
       'Thank you for joining Jobber. Here is your confirmation email. ',
       'projectjobber@gmail.com',
       [user.email],
-      fail_silently=False,
+      fail_silently=True,
       )
       login(request, user)
       return redirect('home')
