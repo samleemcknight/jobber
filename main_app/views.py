@@ -181,6 +181,14 @@ def edit_event(request, event_name):
   else:
     return redirect('event_detail', event_name=event_name)
 
+@login_required
+def delete_event(request, event_name):
+  if request.user.is_superuser:
+    Event.objects.get(name=event_name).delete()
+    return redirect('/')
+  else:
+    return redirect('event_detail', event_name)
+
 def search_bar(request):
   categories = Category.objects.all()
   context = { 'categories': categories }

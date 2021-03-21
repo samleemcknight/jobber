@@ -85,6 +85,19 @@
             </div>
           </div>
         {% endif %}
+        <!-- modal for deleting event -->
+        {% if event.name %}
+          <div id="modal3" class="modal">
+            <div class="modal-content center">
+              <form action=""></form>
+              <form method="POST" action="{% url 'delete_event' event.name %}">
+                {% csrf_token %}
+                <p class="registration-text">Are you sure you want to delete this event?</p>
+                <input type="submit" class="btn red darken-3 bottom" value="Delete">
+              </form>
+            </div>
+          </div>
+        {% endif %}
   </header>
     <main class="container">
       {% block content %}
