@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from datetime import datetime
+from datetime import datetime, date
 from django.core.mail import send_mail
 from django.utils import dateformat
 from django.utils.timezone import make_aware, timezone
@@ -22,8 +22,7 @@ BUCKET = 'jobberproject'
 def home(request):
   events = Event.objects.all().order_by('date')
   categories = Category.objects.all()
-  today = datetime.now()
-  today = make_aware(today)
+  today = date.today()
   events_list = []
   for event in events:
     if event.date >= today:
@@ -43,8 +42,7 @@ def profile(request):
   events = Event.objects.filter(user__id=request.user.id)
   date_joined = request.user.date_joined.strftime("%B %d, %Y")
   last_login = request.user.last_login.strftime("%B %d, %Y")
-  today = datetime.now()
-  today = make_aware(today)
+  today = date.today()
   future_events = []
   past_events = []
   for event in events:
@@ -99,6 +97,7 @@ def edit_profile(request):
 def event_detail(request, event_name):
   event = Event.objects.get(name=event_name)
   categories = event.category.all()
+  categories_without = Category.objects.exclude(id__in=categories.values_list('id')).values()
   atendee = event.user.filter(id=request.user.id)
   guests = event.user.all()
   if len(atendee) == 1:
@@ -110,16 +109,32 @@ def event_detail(request, event_name):
     for el in categories:
       categories_list.append(el.name)
     categories = ' | '.join(categories_list)
-  else:
+  elif len(categories) == 1:
     categories = categories[0]
+  else:
+    categories = "N/A"
   context = {
     'event': event,
     'categories': categories,
+    'categories_without': categories_without,
     'atendee': atendee,
     'guests': guests,
   }
-
   return render(request, 'events/event.html', context)
+
+@login_required
+def add_category(request, event_id):
+  event = Event.objects.get(id=event_id)
+  category = Category.objects.get(name=request.POST['name'])
+  event.category.add(category.id)
+  return redirect('event_detail', event.name)
+
+@login_required
+def remove_category(request, event_id):
+  event = Event.objects.get(id=event_id)
+  category = Category.objects.get(name=request.POST['name'])
+  event.category.remove(category.id)
+  return redirect('event_detail', event.name)
 
 @login_required
 def event_register(request, event_id):
@@ -131,6 +146,41 @@ def event_register(request, event_id):
   else: 
     event.user.remove(request.user)
   return redirect('event_detail', event.name)
+
+@login_required
+def create_event(request):
+  if request.user.is_superuser:
+    form = EventForm()
+    if request.method == 'POST':
+      form = EventForm(request.POST)
+      form.save()
+      event = Event.objects.get(name=request.POST['name'])
+      category = Category.objects.get_or_create(name=request.POST['category'])
+      event.category.add(category[0])
+      return redirect('/')
+    else:
+      return render(request, 'events/create.html', { "form": form })
+  else:
+    return redirect('/')
+
+@login_required
+def edit_event(request, event_name):
+  if request.user.is_superuser:
+    event = Event.objects.get(name=event_name)
+    category = Category.objects.filter(id__in=event.category.all().values_list('id'))
+    form = EventForm(request.POST or None, instance=event)
+    context = {
+      "form": form,
+      "event": event,
+      "categories": category
+    }
+    if request.method == 'POST' and form.is_valid():
+      form.save()
+      return redirect('event_detail', event_name=event_name)
+    else:
+      return render(request, 'events/edit.html', context)
+  else:
+    return redirect('event_detail', event_name=event_name)
 
 def search_bar(request):
   categories = Category.objects.all()

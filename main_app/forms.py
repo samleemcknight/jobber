@@ -21,7 +21,7 @@ class SignupForm(UserCreationForm):
 class EventForm(forms.ModelForm):
   class Meta:
     model = Event
-    fields = ('name', 'date', 'time_zone', 'description', 'speaker', 'location_link')
+    fields = ('name', 'date', 'time', 'time_zone', 'description', 'speaker', 'location_link')
 
 class EditProfileForm(forms.ModelForm):
     class Meta:

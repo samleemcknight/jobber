@@ -10,18 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} ">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const elem = document.querySelector('.modal');
-      const elem1 = document.querySelector('#modal2');
-      M.Modal.init(elem);
-      M.Modal.init(elem1);
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      const elem = document.querySelector('.carousel');
-      M.Carousel.init(elem);
-    });
-  </script>
   <script defer src="{% static 'js/app.js' %}"></script>
   <title>Jobber</title>
 </head>
@@ -33,9 +21,12 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Jobber</a></li>
         </ul>
         <ul class="right">
+        {% if user.is_superuser %}
+          <li><a href="{% url 'create_event' %}">Create Event</a></li>
+        {% endif %}
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
           <li><a href="{% url 'profile' %}">Profile</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
         {% else %}
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
