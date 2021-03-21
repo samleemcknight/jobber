@@ -150,9 +150,17 @@ input[type=text]:not(.browser-default) {
 }
 
 #svg-resume {
+  max-width: 100%;
+  height: auto;
   margin-top: 10px;
   height: 30vh;
   float: right;
+}
+
+@media only screen and (max-width: 100px) {
+  #svg-resume {
+    width: 50%;
+  }
 }
 
 #svg-career {
@@ -162,6 +170,37 @@ input[type=text]:not(.browser-default) {
   margin: 20px 0 20px 0;
 }
 
+#name-container {
+  display: inline-block;
+}
+
+.about-row {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.about-title {
+  text-align: center;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+#profile-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+@media only screen and (min-width: 200px) {
+.team-info {
+    width: 50%;
+    justify-content: space-between;
+  }
+}
+
 @media only screen and (min-width: 990px) {
   .event-cards {
     height: 13rem;
@@ -169,4 +208,8 @@ input[type=text]:not(.browser-default) {
     margin: 5px;
     overflow: hidden;
   }
+}
+
+.footer {
+  background-color: black;
 }

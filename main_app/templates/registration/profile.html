@@ -4,18 +4,22 @@
 
 {% if user.is_authenticated %}
 
-  <h2>{% block title %} {{request.user.get_full_name}} {% endblock %}</h2>
-  <p>Username: {{ user }}</p>
-  <p>Date Joined: {{ date_joined }} </p>
-  <p>Last Active: {{ last_login }}</p>
+  <h2>{% block title %} Hello, {{request.user.get_full_name}} {% endblock %}</h2>
+  <div class="profile-info">
+  <h4>Username: {{ user }}</h4>
+  <p>Date Joined: {{ date_joined }}</p>
+  <p><small>Last Active: {{ last_login }}</small></p>
+  </div>
 
 {% if user.id == request.user.id  %}
+<div id="profile-buttons">
 <a class="btn" href="{% url 'edit_profile' %}">Edit Profile</a>
 <br>
 <br>
 <form action="{% url 'change-password' %}">
     <input type="submit" class="btn" value="Change Password" />
 </form>
+</div>
 {% endif %}
 
 {% else %}
