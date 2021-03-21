@@ -81,6 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'jobber',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
     }
 }
 
@@ -146,5 +148,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'projectjobber@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
-import django_heroku
-django_heroku.settings(locals())

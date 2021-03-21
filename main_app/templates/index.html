@@ -47,7 +47,6 @@
             <a href="{% url 'event_detail' event.name %}"><h5>{{ event.name }}</h5></a>
             {{ event.date }}<br>
             {{ event.description|truncatechars:100 }}
-            <a href="{% url 'event_detail' event.id %}"><p>Detail</p></a>
           </div>
         </div>
       </div>

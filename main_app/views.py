@@ -5,11 +5,16 @@ from django.utils import dateformat
 from django.utils.timezone import make_aware, timezone
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+import uuid
+import boto3
 from .forms import SignupForm, EventForm, EditProfileForm
 from django.core.mail import send_mail
 
 
-from .models import Event, Category, User
+from .models import Event, Category, User, Photo
+
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'jobberproject'
 
 # Create your views here.
 
@@ -29,6 +34,9 @@ def home(request):
 
   }
   return render(request, 'index.html', context)
+
+def about(request):
+  return render(request, 'about.html')
 
 @login_required
 def profile(request):
