@@ -107,8 +107,29 @@ nav h4 {
   color: black;
 }
 
+.datepicker-date-display, .timepicker-digital-display {
+  background-color:rgb(82, 80, 80)
+}
+
+.datepicker-table td.is-today {
+  background-color:rgb(82, 80, 80)
+}
+
+.timepicker-close, .datepicker-cancel, .datepicker-done {
+  color: black;
+}
+
 input[type=text]:not(.browser-default) {
   height: 3rem;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid black;
+  box-shadow: none;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label {
+  color: #9e9e9e;
 }
 
 .modal .modal-content {
@@ -124,10 +145,10 @@ input[type=text]:not(.browser-default) {
   padding: 0;
 }
 
-#modal2 {
+#modal2, #modal3 {
   top: 30% !important;
   width: 40% !important;
-  height: 12rem !important;
+  height: 40% !important;
   opacity: 0.9 !important;
 }
 
