@@ -41,7 +41,7 @@
     <a href="{% url 'view_profile' guest.id %}"><li>{{ guest.first_name }} {{ guest.last_name }}</li></a>
   {% endfor %}
 </div>
-
+<br>
 {% endif %}
 <br>
 <div class="row">
@@ -51,5 +51,6 @@
     {% endif %}
   </div>
 </div>
-
+<br>
+<br>
 {% endblock %}
