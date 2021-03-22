@@ -176,7 +176,7 @@ def edit_event(request, event_name):
     }
     if request.method == 'POST' and form.is_valid():
       form.save()
-      return redirect('event_detail', event_name=event_name)
+      return redirect('event_detail', event_name=request.POST['name'])
     else:
       return render(request, 'events/edit.html', context)
   else:
@@ -214,13 +214,6 @@ def signup(request):
     form = SignupForm(request.POST)
     if form.is_valid():
       user = form.save()
-      send_mail(
-      'CONFIRMATION: Welcome to Jobber',
-      'Thank you for joining Jobber. Here is your confirmation email. ',
-      'projectjobber@gmail.com',
-      [user.email],
-      fail_silently=True,
-      )
       login(request, user)
       return redirect('home')
     else:
