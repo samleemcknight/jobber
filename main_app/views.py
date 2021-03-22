@@ -68,8 +68,7 @@ def view_profile(request, user_id):
   user.last_login = user.last_login.strftime("%B %d, %Y")
   events = Event.objects.filter(user__id=user_id)
   # following 9 lnes separates events into past and future
-  today = datetime.now()
-  today = make_aware(today)
+  today = date.today()
   future_events = []
   past_events = []
   for event in events:
@@ -97,7 +96,6 @@ def edit_profile(request):
 def event_detail(request, event_name):
   event = Event.objects.get(name=event_name)
   categories = event.category.all()
-  categories_without = Category.objects.exclude(id__in=categories.values_list('id')).values()
   atendee = event.user.filter(id=request.user.id)
   guests = event.user.all()
   if len(atendee) == 1:
@@ -116,7 +114,6 @@ def event_detail(request, event_name):
   context = {
     'event': event,
     'categories': categories,
-    'categories_without': categories_without,
     'atendee': atendee,
     'guests': guests,
   }
@@ -168,11 +165,13 @@ def edit_event(request, event_name):
   if request.user.is_superuser:
     event = Event.objects.get(name=event_name)
     category = Category.objects.filter(id__in=event.category.all().values_list('id'))
+    categories_without = Category.objects.exclude(id__in=event.category.all().values_list('id'))
     form = EventForm(request.POST or None, instance=event)
     context = {
       "form": form,
       "event": event,
-      "categories": category
+      "categories": category,
+      'categories_without': categories_without, 
     }
     if request.method == 'POST' and form.is_valid():
       form.save()
@@ -181,6 +180,14 @@ def edit_event(request, event_name):
       return render(request, 'events/edit.html', context)
   else:
     return redirect('event_detail', event_name=event_name)
+
+@login_required
+def delete_event(request, event_name):
+  if request.user.is_superuser:
+    Event.objects.get(name=event_name).delete()
+    return redirect('/')
+  else:
+    return redirect('event_detail', event_name)
 
 def search_bar(request):
   categories = Category.objects.all()

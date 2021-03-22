@@ -9,22 +9,6 @@
 <hr>
 <div class="event-info"> 
 <p><span class="keyword">Industry Focus:</span> {{ categories }}</p>
-  {% if user.is_superuser %}
-    <p>Add Categories:</p>
-    <!-- for some reason, this form will not load for me unless I declare a form before it-->
-    <!-- super weird bug that I do not understand -->
-    <form action=""></form>
-    <form action="{% url 'add_category' event.id %}" method="POST" id="select-form">
-      {% csrf_token %}
-      <select name="name" id="category-filter">
-        <option value="">----</option>
-      {% for category in categories_without %}
-        <option value="{{category.name}}">{{category.name}}</option>
-      {% endfor %}
-      </select>
-      <input type="submit" class="btn blue darken-3" value="Add">
-    </form> 
-  {% endif %}
 <p><span class="keyword">Date:</span> {{ event.date }}</p>
 <p><span class="keyword">Time:</span> {{ event.time }} {{ event.time_zone }}</p>
 <p class="keyword">Description:</p>
@@ -59,5 +43,17 @@
 </div>
 
 {% endif %}
+
+<div class="row">
+  <div class="col s4">
+    {% if user.is_superuser %}
+      <a href="{% url 'edit_event' event.name %}" class="btn blue darken-3">Edit</a>
+    
+  </div>
+  <div class="col s4">
+      <a class="waves-effect waves-light btn red darken-3 modal-trigger" href="#modal3">Delete</a>
+    {% endif %}
+  </div>
+</div>
 
 {% endblock %}
