@@ -35,7 +35,15 @@ def home(request):
   return render(request, 'index.html', context)
 
 def about(request):
-  return render(request, 'about.html')
+  try: 
+    eddy = User.objects.get(first_name="Eddy", is_superuser=True)
+  except User.DoesNotExist:
+    eddy = None
+  try:
+    sam = User.objects.get(username="sammcknight", is_superuser=True)
+  except User.DoesNotExist:
+    return render(request, 'about.html')
+  return render(request, 'about.html', {'eddy': eddy, 'sam': sam})
 
 @login_required
 def profile(request):
@@ -60,14 +68,16 @@ def profile(request):
 
 @login_required
 def view_profile(request, user_id):
-  user = User.objects.get(id=user_id)
-  if user_id == request.user.id:
+  # if no user object is found, user is redirected to their profile:
+  try:
+    user = User.objects.get(id=user_id or None)
+  except User.DoesNotExist or user_id == request.user.id:
     return redirect('profile')
   # formats dates to not include times:
   user.date_joined = user.date_joined.strftime("%B %d, %Y")
   user.last_login = user.last_login.strftime("%B %d, %Y")
   events = Event.objects.filter(user__id=user_id)
-  # following 9 lnes separates events into past and future
+  # following 9 lines separates events into past and future
   today = date.today()
   future_events = []
   past_events = []
@@ -100,8 +110,7 @@ def event_detail(request, event_name):
   guests = event.user.all()
   if len(atendee) == 1:
     atendee = atendee[0]
-  # the following conditional ensures that a string is passed to the html in order to
-  # format it nicely
+  # the following conditional ensures that a string is passed to the html in order to format it nicely
   if len(categories) > 1:
     categories_list = []
     for el in categories:
@@ -135,7 +144,6 @@ def remove_category(request, event_id):
 
 @login_required
 def event_register(request, event_id):
-  pass
   event = Event.objects.get(id=event_id)
   success_message = ''
   if request.POST['action'] == 'register':
