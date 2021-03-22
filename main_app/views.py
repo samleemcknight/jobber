@@ -175,7 +175,7 @@ def edit_event(request, event_name):
     }
     if request.method == 'POST' and form.is_valid():
       form.save()
-      return redirect('event_detail', event_name=event_name)
+      return redirect('event_detail', event_name=request.POST['name'])
     else:
       return render(request, 'events/edit.html', context)
   else:
