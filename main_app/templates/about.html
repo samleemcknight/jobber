@@ -6,7 +6,11 @@
 <h1 class="about-title">Meet The Team</h1>
 <div class="about-row">
   <div class="team-info">
+    {% if eddy %}
+    <a href="{% url 'view_profile' eddy.id %}"><h3>Eddy</h3></a>
+    {% else %}
     <h3>Eddy</h3>
+    {% endif %}
     <img class="about-pic" src="/static/images/eddy.jpg" width="150" height="150"/>
     <br>
     <span class="italics" style="white-space: pre-line">"I’ve always had a passion in tech 
@@ -22,7 +26,11 @@
 </p>
   </div>
   <div class="team-info">
+    {% if sam %}
+    <a href="{% url 'view_profile' sam.id %}"><h3>Sam</h3></a>
+    {% else %}
     <h3>Sam</h3>
+    {% endif %}
     <img class="about-pic" src="/static/images/sam.jpg" width="150" height="150"/>
     <br>
     <span class="italics" style="white-space: pre-line">"Through my experiences in academics and education,
