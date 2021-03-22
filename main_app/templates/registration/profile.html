@@ -3,8 +3,13 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<!-- personalizes the profile message if req.user -->
+  {% if user.id == request.user.id %}
+    <h2 class="profile-title">{% block title %} Hello, {{request.user.get_full_name}} {% endblock %}</h2>
+  {% else %}
+    <h2 class="profile-title">{{user.get_full_name}} </h2>
+  {% endif %}
 
-  <h2 class="profile-title">{% block title %} Hello, {{request.user.get_full_name}} {% endblock %}</h2>
   <div class="profile-info">
   <h4>Username: {{ user }}</h4>
   <p>Date Joined: {{ date_joined }}</p>
