@@ -29,3 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const elem = document.querySelector('.carousel');
   M.Carousel.init(elem);
 });
+
+const elDropdown = document.getElementById("dropdown-trigger")
+const instancesDropdown = M.Dropdown.init(elDropdown);

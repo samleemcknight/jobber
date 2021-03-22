@@ -27,6 +27,11 @@
       <input type="submit" class="btn blue darken-3" value="Register">
     </form>
   {% endif %}
+  <br>
+  <br>
+{% if user.is_superuser %}
+  <a href="{% url 'edit_event' event.name %}" class="btn blue">Edit</a>
+{% endif %}
 </div>
 
 <div class="guestlist">

@@ -25,8 +25,11 @@
           <li><a href="{% url 'create_event' %}">Create Event</a></li>
         {% endif %}
         {% if user.is_authenticated %}
-          <li><a href="{% url 'profile' %}">Profile</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+        <li><a id="dropdown-trigger" class="right" href="#" data-target="dropdown1">Profile<i class="material-icons right"></i></a></li>
+          <ul id="dropdown1" class="dropdown-content">
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
         {% else %}
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Login</a></li>
           <li><a class="waves-effect waves-light btn blue darken-3 modal-trigger" href="#modal1">Sign Up</a></li>
@@ -103,9 +106,9 @@
       {% block content %}
       {% endblock  %}
     </main>
-<footer class="footer">
-    <div style="color:white;" class="right">Always looking for potential investors</div>
-    <a href="{% url 'about' %}">About Us</a>
-  </footer>
+<footer class="page-footer">
+  <a href="{% url 'about' %}">About Us</a>
+  <div id="footer-text" class="right">All Rights Reserved, &copy; 2021 Jobber &nbsp;</div>
+</footer>
 </body>
 </html>

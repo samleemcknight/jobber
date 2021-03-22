@@ -4,7 +4,7 @@
 
 {% if user.is_authenticated %}
 
-  <h2>{% block title %} Hello, {{user.get_full_name}} {% endblock %}</h2>
+  <h2 class="profile-title">{% block title %} Hello, {{request.user.get_full_name}} {% endblock %}</h2>
   <div class="profile-info">
   <h4>Username: {{ user }}</h4>
   <p>Date Joined: {{ date_joined }}</p>
@@ -13,12 +13,10 @@
 
 {% if user.id == request.user.id  %}
 <div id="profile-buttons">
-<a class="btn" href="{% url 'edit_profile' %}">Edit Profile</a>
+<a class="btn blue" href="{% url 'edit_profile' %}">Edit Profile</a>
 <br>
 <br>
-<form action="{% url 'change-password' %}">
-    <input type="submit" class="btn" value="Change Password" />
-</form>
+<a class="waves-effect waves-light btn red darken-1 modal-trigger" href="{% url 'change-password' %}">Change Password</a>
 </div>
 {% endif %}
 
