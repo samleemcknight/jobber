@@ -51,3 +51,29 @@
 <li>Send messages to other users</li>
 <li>"Pretty urls" for user ex:profile/james</li>
 </ul>
+
+## Local Installation
+To install this on your own machine, follow these instructions:
+- ```git clone``` the repository
+- initialize the virtual environment and activate it:
+  - note: *you can set this up with another name, such as ``.venv``*
+```bash
+$ python3 -m venv .env
+$ source .env/bin/activate
+```
+- install the requirements:
+```bash
+$ pip install -r requirements.txt
+```
+- create your (postgres) database:
+```bash
+$ createdb jobber
+```
+- run migrations:
+```bash
+$ python manage.py migrate
+```
+- boot up your local server!
+```bash
+$ python manage.py runserver
+```

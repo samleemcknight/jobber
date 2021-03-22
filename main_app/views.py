@@ -35,6 +35,8 @@ def home(request):
   return render(request, 'index.html', context)
 
 def about(request):
+  # gets eddy an sam's user info to link to their profile. Since the other isn't a superuser on that machine,
+  # we've added exceptions to avoid errors
   try: 
     eddy = User.objects.get(first_name="Eddy", is_superuser=True)
   except User.DoesNotExist:
